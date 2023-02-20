@@ -10,16 +10,16 @@ a {
 h1 {
   color: 15px;
 }
-#timetable{
+#timetable {
   border: 1px solid black;
   display: flex;
   width: 70vw;
 }
-.day{
+.day {
   border: 1px solid black;
   width: 10vw;
 }
-.day>div{
+.day > div {
   height: 50vh;
   border: 1px solid black;
 }
@@ -33,7 +33,7 @@ h1 {
   justify-content: center;
   align-items: center;
 }
- 
+
 .main-title {
   font-size: 50px;
   text-align: center;
@@ -51,4 +51,31 @@ h1 {
 }
 .login-title {
   width: 100wh;
+}
+/**********************************CSS FOR THE GRID******************************/
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.cell {
+  background-color: dodgerblue;
+  border: 0.5px solid black;
+}
+
+.days {
+  background-color: red;
+}
+
+.hours {
+  background-color: green;
+}
+
+#grid {
+  display: grid;
+  margin-top: 4rem;
+  padding: 2rem;
+  grid-template-columns: repeat(8, 11vw);
+  grid-template-rows: repeat(11, 7vh);
 }
