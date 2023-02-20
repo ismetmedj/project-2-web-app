@@ -5,6 +5,7 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#main").innerHTML = "";
       document.querySelector("#main").append(clone);
     });
+
 // document.querySelector('#fetch').addEventListener('click', fetchAll());
 fetchAll();
 async function fetchAll() {
@@ -36,6 +37,7 @@ function createLi(tt, ul){
         ul.append(li)
         li.append(a, delBtn);
 }
+
     //   document
     //     .querySelector("#createTimeTable")
     //     .addEventListener("submit", async (event) => {

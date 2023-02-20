@@ -1,16 +1,6 @@
-<div id="main">
-  <button id="create">Create a Time Table</button>
-  <section id="grid"></section>
-
-</div>
-<template id="createTT">
-  <form id="createTimeTable">
-    <label for="title">Title: </label>
-    <input type="text" name="title" id="title" />
-    {{! <label for="Participants"></label> }}
-    <button>Create</button>
-  </form>
-</template>
+<h1>{{TT.title}}</h1>
+<div id="divBtn"></div>
+<section id="grid"></section>
 <template id="createEvent">
   <form action="/timetable/:idTT" method="post">
     <label for="title">Title</label>
