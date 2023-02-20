@@ -8,15 +8,29 @@ document.querySelector('#create').addEventListener('click', (event)=> {
   const clone= document.querySelector('#createTT').content.cloneNode(true);
   document.querySelector('#main').innerHTML= '';
   document.querySelector('#main').append(clone);
+
+  document.querySelector('#createTimeTable').addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const title= document.querySelector('#title').value;
+    const newTT= { title };
+    // console.log(newTT);
+    try {
+      // console.log('hey');
+      const res= await myAPI.post('/timetable', newTT);
+      // console.log(res);
+      const eventBtn= document.createElement('button');
+      eventBtn.classList.add('createEvent');
+      eventBtn.textContent= 'create event';
+      document.querySelector('#main').append(eventBtn);
+      eventBtn.addEventListener('click', (event)=> {
+        const clone= document.querySelector('#createEvent').content.cloneNode(true);
+        document.querySelector('#main').innerHTML= '';
+        document.querySelector('#main').append(clone);
+    });
+      // document.querySelector('#main').append(clone);
+    } catch (error) {
+      console.error(error);
+    }
+  })
 })
 
-document.querySelector('#createTT').addEventListener('click', async (event) => {
-  event.defaultPrevented();
-  const newTT= { title };
-  try {
-    const res= await myAPI.post('/timetable', newTT);
-    // console.log(res);
-  } catch (error) {
-    console.error(error);
-  }
-})
