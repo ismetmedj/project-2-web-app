@@ -1,43 +1,45 @@
 <div id="main">
-    <button id="create">Create a Time Table</button>
+  <button id="create">Create a Time Table</button>
+  <section id="grid"></section>
+
 </div>
 <template id="createTT">
-      <form id="createTimeTable">
-      <label for="title">Title: </label>
-      <input type="text" name="title" id="title">
-      {{!-- <label for="Participants"></label> --}}
-      <button>Create</button>
-      </form>
+  <form id="createTimeTable">
+    <label for="title">Title: </label>
+    <input type="text" name="title" id="title" />
+    {{! <label for="Participants"></label> }}
+    <button>Create</button>
+  </form>
 </template>
 <template id="createEvent">
-    <form action="/timetable/:idTT" method="post">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
-        <label for="content">Content</label>
-        <input type="text" name>
-        <label for="hour">Hour</label>
-        <select name="hour" id="hour">
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-        </select>
-        <select name="day" id="day">
-            <option value="monday">Monday</option>
-            <option value="thuesday">Thuesday</option>
-            <option value="wednesday">Wednesday</option>
-            <option value="thursday">Thursday</option>
-            <option value="friday">Friday</option>
-            <option value="saturday">Saturday</option>
-            <option value="sunday">Sunday</option>
-        </select>
-        <button>Create</button>
-    </form>
+  <form action="/timetable/:idTT" method="post">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" />
+    <label for="content">Content</label>
+    <input type="text" name />
+    <label for="hour">Hour</label>
+    <select name="hour" id="hour">
+      <option value="8">8</option>
+      <option value="9">9</option>
+      <option value="10">10</option>
+      <option value="11">11</option>
+      <option value="12">12</option>
+      <option value="13">13</option>
+      <option value="14">14</option>
+      <option value="15">15</option>
+      <option value="16">16</option>
+      <option value="17">17</option>
+      <option value="18">18</option>
+    </select>
+    <select name="day" id="day">
+      <option value="monday">Monday</option>
+      <option value="thuesday">Thuesday</option>
+      <option value="wednesday">Wednesday</option>
+      <option value="thursday">Thursday</option>
+      <option value="friday">Friday</option>
+      <option value="saturday">Saturday</option>
+      <option value="sunday">Sunday</option>
+    </select>
+    <button>Create</button>
+  </form>
 </template>
