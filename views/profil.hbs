@@ -1,6 +1,8 @@
 <h1>Profil of {{user.username}}</h1>
 <div id="main">
   <button id="create">Create a Time Table</button>
+  <button id="fetch">Fecth all</button>
+
 </div>
 <template id="createTT">
   <form id="createTimeTable" action="/profil" method="post">
@@ -10,6 +12,12 @@
     <button>Create</button>
   </form>
 </template>
+<div id="list"></div>
+{{!-- <ul>
+    {{#each allTT}}
+    <li><a href="/timetable/{{this._id}}">{{this.title}}</a><button class="delete {{this._id}}">Delete</button></li>
+    {{/each}}
+</ul> --}}
 <ul>
     {{#each allTT}}
     <li><a href="/timetable/{{this._id}}">{{this.title}}</a><button id="delete">Delete</button></li>
