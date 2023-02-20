@@ -6,7 +6,7 @@ const TimeTable= require('../models/TimeTable.model');
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("index");
+  res.render("auth/login");
 });
 router.get('/timetable', isLoggedIn, (req, res, next) => {
   res.render('timetable');

@@ -1,20 +1,30 @@
-<div id="login-form">
-  <h2>Log In</h2>
-  <form action="/auth/login" method="POST">
+<style>
+  nav {
+    visibility: hidden;
+  }
+</style>
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+<h1 class="main-title">Welcome to MyLittleTimeTable</h1>
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+<main class="main-login-signup">
+<h2 class="login-title">Please, log in.</h2>
+  <div class="form-login-signup">
+    <form action="./login" method="POST" class="form">
 
-    <button type="submit">Log In</button>
+      <label> Username
+        <input type="text" name="username" placeholder="Your username" />
+      </label>
 
+      <label> Password
+        <input type="password" name="password" placeholder="Your password" />
+      </label>
 
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+      <button type="submit">Log In</button>
+      
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+    <p>No account yet ?<a href="/auth/signup"> Sign up!</a></p>
+  </div>
+</main>
