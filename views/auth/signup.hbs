@@ -1,20 +1,28 @@
-<div id="form">
+<style>
+  nav {
+    visibility: hidden;
+  }
+</style>
+
+<main class="main-login-signup">
   <h2>Sign Up</h2>
-  <form action="/auth/signup" method="POST">
+  <div class="form-login-signup">
+    <form action="/auth/signup" method="POST">
 
-    <label> Username
-      <input type="text" name="username" placeholder="Your username" />
-    </label>
+      <label> Username
+        <input type="text" name="username" placeholder="Your username" />
+      </label>
 
-    <label> Password
-      <input type="password" name="password" placeholder="Your password" />
-    </label>
+      <label> Password
+        <input type="password" name="password" placeholder="Your password" />
+      </label>
 
-    <button type="submit">Sign Up</button>
+      <button type="submit">Sign Up</button>
 
-
-    {{#if errorMessage}}
-      <p class="error">{{errorMessage}}</p>
-    {{/if}}
-  </form>
-</div>
+      {{#if errorMessage}}
+        <p class="error">{{errorMessage}}</p>
+      {{/if}}
+    </form>
+    <p>Already have an account ?<a href="/auth/login"> Log in!</a></p>
+  </div>
+</main>

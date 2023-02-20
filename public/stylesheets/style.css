@@ -23,3 +23,32 @@ h1 {
   height: 50vh;
   border: 1px solid black;
 }
+
+/************************* LOGIN / INDEX *************************/
+
+.main-login-signup {
+  height: 25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+ 
+.main-title {
+  font-size: 50px;
+  text-align: center;
+}
+
+.form-login-signup {
+  height: 10rem;
+  width: 20rem;
+  padding-top: 2rem;
+}
+
+.form {
+  height: 10rem;
+  width: 20rem;
+}
+.login-title {
+  width: 100wh;
+}
