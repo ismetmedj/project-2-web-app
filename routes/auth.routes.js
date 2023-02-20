@@ -34,13 +34,13 @@ router.post("/signup", isLoggedOut, (req, res) => {
     return;
   }
 
-  if (password.length < 6) {
-    res.status(400).render("auth/signup", {
-      errorMessage: "Your password needs to be at least 6 characters long.",
-    });
+  // if (password.length < 6) {
+  //   res.status(400).render("auth/signup", {
+  //     errorMessage: "Your password needs to be at least 6 characters long.",
+  //   });
 
-    return;
-  }
+  //   return;
+  // }
 
   //   ! This regular expression checks password for special characters and minimum length
   /*
@@ -101,11 +101,11 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
   // Here we use the same logic as above
   // - either length based parameters or we check the strength of a password
-  if (password.length < 6) {
-    return res.status(400).render("auth/login", {
-      errorMessage: "Your password needs to be at least 6 characters long.",
-    });
-  }
+  // if (password.length < 6) {
+  //   return res.status(400).render("auth/login", {
+  //     errorMessage: "Your password needs to be at least 6 characters long.",
+  //   });
+  // }
 
   // Search the database for a user with the email submitted in the form
   User.findOne({ username })

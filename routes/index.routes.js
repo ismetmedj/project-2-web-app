@@ -5,5 +5,10 @@ const router = express.Router();
 router.get("/", (req, res, next) => {
   res.render("index");
 });
-
+router.get('/timetable', (req, res, next) => {
+  res.render('timetable');
+});
+router.get('/profile', (req, res, next) => {
+  res.render('profile');
+});
 module.exports = router;

@@ -10,3 +10,16 @@ a {
 h1 {
   color: 15px;
 }
+#timetable{
+  border: 1px solid black;
+  display: flex;
+  width: 70vw;
+}
+.day{
+  border: 1px solid black;
+  width: 10vw;
+}
+.day>div{
+  height: 50vh;
+  border: 1px solid black;
+}
