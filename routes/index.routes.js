@@ -6,28 +6,7 @@ const TimeTable= require('../models/TimeTable.model');
 
 /* GET home page */
 router.get("/", (req, res, next) => {
-  res.render("auth/login");
-});
-router.get('/timetable', isLoggedIn, (req, res, next) => {
-  res.render('timetable');
-});
-router.get('/profile', (req, res, next) => {
-  res.render('profile');
+  res.render("index");
 });
 
-router.post('/timetable', isLoggedIn, async (req, res, next)=> {
-  try {
-    const userId= await User.findOne({username: req.session.currentUser.username});
-    const createTT= {
-      title: req.body.title,
-      admin: userId._id,
-      participants: [],
-    }
-    const newTimeTable = await TimeTable.create(createTT);
-    // console.log(newTimeTable);
-    res.status(201).json(newTimeTable);
-  } catch (error) {
-    next(error);
-  }
-})
 module.exports = router;

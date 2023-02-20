@@ -40,8 +40,11 @@ function createHours() {
 // gridElement.innerHTML = "";
 
 function launchTimetable() {
+  console.log('hey');
   createTheGrid();
   createCell();
   createDays();
   createHours();
 }
+
+export default launchTimetable;

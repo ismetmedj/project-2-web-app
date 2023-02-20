@@ -131,10 +131,10 @@ router.post("/login", isLoggedOut, (req, res, next) => {
 
           // Add the user object to the session object
           req.session.currentUser = user.toObject();
+          // console.log(req.session)
           // Remove the password field
           delete req.session.currentUser.password;
-
-          res.redirect("/timetable");
+          res.redirect("/profil");
         })
         .catch((err) => next(err)); // In this case, we send error handling to the error handling middleware.
     })
