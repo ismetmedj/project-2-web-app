@@ -13,7 +13,7 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    admin: Boolean,
+    // admin: Boolean,
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`
