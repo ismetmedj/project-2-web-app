@@ -11,10 +11,10 @@ const TimeTableSchema= new Schema (
             required: true,
             ref:'User',
         },
-        participants: {
-            type: [Schema.Types.ObjectId],
+        participants: [{
+            type: Schema.Types.ObjectId,
             ref:'User',
-        },
+        }],
     }
 )
 const TimeTable = model("TimeTable", TimeTableSchema);
