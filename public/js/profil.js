@@ -23,23 +23,40 @@ async function fetchShare() {
     }
 }
 
-async function editTT(tt , shared=false) {
+async function editTT(tt) {
     try {
         const editedTT= await myAPI.get(`/profil/${tt._id}`);
+        const all=await myAPI.post('/users');
+        // console.log(all);
         const clone = document.querySelector("#editTT").content.cloneNode(true);
         document.getElementById(tt._id).innerHTML= "";
         document.getElementById(tt._id).append(clone);
+        const editForm= document.querySelector('#editForm');
+        // console.log(tt.participants);
+        all.data.forEach((el) => {
+            const input= document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('name', el.username);
+            input.setAttribute('id', el.username);
+            input.classList.add('updateShare');
+            const label= document.createElement('label');
+            label.setAttribute('for', el.username);
+            label.textContent= el.username;
+            for(const user of tt.participants){
+                if(user._id===el._id){
+                    input.checked= true;
+                }
+            }
+            const divInp= document.createElement('div');
+            divInp.append(input, label);
+            editForm.append(divInp);
+        })
         
-        // if(!shared){
-            document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
-            document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-            document.querySelector('#editBtn').classList.add(tt._id);
-            document.querySelector('#editBtn').textContent= "Update";
-        // }
-        // else {
-            // document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
-            // document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-        // }
+        document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
+        document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
+        document.querySelector('#editBtn').classList.add(tt._id);
+        document.querySelector('#editBtn').textContent= "Update";
+        
     } catch (error) {
         console.error(error);
     }
@@ -121,7 +138,13 @@ async function deleteOne(tt) {
  async function updateTT(tt) {
     // console.log('click')
     const title= document.querySelector('#edittitle').value;
-    const newTT= { title };
+    const partic= [];
+    document.querySelectorAll('.updateShare').forEach((el) => {
+        if(el.checked){
+            partic.push(el.name);
+        }
+    })
+    const newTT= { title , partic};
     await myAPI.patch(`/profil/${tt._id}`, newTT);
     fetchAll();
  }

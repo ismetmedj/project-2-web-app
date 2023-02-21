@@ -13,4 +13,9 @@ router.get('/users', async (req, res, next) => {
     const allUsers= await User.find();
     res.render('./users', {allUsers})
 })
+router.post('/users', async (req, res, next) => {
+    const user= req.session.currentUser;
+    const all= await User.find({username: {"$not": RegExp(user.username)}});
+    res.status(200).json(all);
+})
 module.exports = router
