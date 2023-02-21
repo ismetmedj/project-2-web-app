@@ -1,86 +1,86 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    padding: 50px;
+    font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
 a {
-  color: #00b7ff;
+    color: #00b7ff;
 }
 
 h1 {
-  color: 15px;
+    color: 15px;
 }
 #timetable {
-  border: 1px solid black;
-  display: flex;
-  width: 70vw;
+    border: 1px solid black;
+    display: flex;
+    width: 70vw;
 }
 .day {
-  border: 1px solid black;
-  width: 10vw;
+    border: 1px solid black;
+    width: 10vw;
 }
 .day > div {
-  height: 50vh;
-  border: 1px solid black;
+    height: 50vh;
+    border: 1px solid black;
 }
 
 /************************* LOGIN / INDEX *************************/
 
 .main-login-signup {
-  height: 25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+    height: 25rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .main-title {
-  font-size: 50px;
-  text-align: center;
+    font-size: 50px;
+    text-align: center;
 }
 
 .form-login-signup {
-  height: 10rem;
-  width: 20rem;
-  padding-top: 2rem;
+    height: 10rem;
+    width: 20rem;
+    padding-top: 2rem;
 }
 
 .form {
-  height: 10rem;
-  width: 20rem;
+    height: 10rem;
+    width: 20rem;
 }
 .login-title {
-  width: 100wh;
+    width: 100wh;
 }
 /**********************************CSS FOR THE GRID******************************/
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 .cell {
-  background-color: dodgerblue;
-  border: 0.5px solid black;
+    background-color: dodgerblue;
+    border: 0.5px solid black;
 }
 
 .days {
-  background-color: red;
+    background-color: red;
 }
 
 .hours {
-  background-color: green;
+    background-color: green;
 }
 
 #grid {
-  display: grid;
-  margin-top: 4rem;
-  padding: 2rem;
-  grid-template-columns: repeat(8, 11vw);
-  grid-template-rows: repeat(11, 7vh);
+    display: grid;
+    margin-top: 4rem;
+    padding: 2rem;
+    grid-template-columns: repeat(8, 11vw);
+    grid-template-rows: repeat(11, 7vh);
 }
 
-header>nav>ul{
-  display: flex;
-  justify-content: space-evenly;
+header > nav > ul {
+    display: flex;
+    justify-content: space-evenly;
 }
