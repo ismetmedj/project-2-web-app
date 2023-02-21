@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const bcrypt = require('bcrypt')
 
 const MONGO_URI =
     process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Project-2'
@@ -33,7 +34,16 @@ mongoose
 
 async function seedUsers() {
     await User.deleteMany()
+    await cryptUsersPassword()
     await User.create(users)
+}
+
+async function cryptUsersPassword() {
+    for (const user of users) {
+        const salt = await bcrypt.genSalt(10)
+        const hashedPassword = await bcrypt.hash(user.password, salt)
+        user.password = hashedPassword
+    }
 }
 
 async function seedTimeTables() {
