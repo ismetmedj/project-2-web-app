@@ -85,17 +85,18 @@ function createLi(tt, ul, shared){
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
         const whithUl= document.createElement('ul');
-        const h3= document.createElement('h3');
-        h3.textContent= "List of Participants";
+        const h6= document.createElement('h6');
+        h6.textContent= "List of Participants";
         // console.log(tt);
+        whithUl.append(h6);
         tt.participants.forEach((part) => {
             const withLi= document.createElement('li');
             withLi.textContent= part.username;
-            whithUl.append(h3, withLi);
-            // const partObj= await User.findById(part);
-            // const deletePart= document.createElement('button');
+            const deletePart= document.createElement('button');
             // deletePart.classList.add('deletePart');
             // deletePart.textContent= "Unshare";
+            // deletePart.addEventListener('click', (event) => unshareTT(tt));
+            whithUl.append(withLi);
         })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
         li.append(delBtn, whithUl);
@@ -112,26 +113,19 @@ function createLi(tt, ul, shared){
             divEdit.append(ediBtn);
             ediBtn.addEventListener('click', (event) => editTT(tt));
             
-            // const divShare= document.createElement('div');
-            // divShare.classList.add('divShare');
-            // const shareBtn= document.createElement('button');
-            // shareBtn.textContent= "Share Time Table"
-            // divShare.append(shareBtn);
-            // shareBtn.addEventListener('click', (event) => editTT(tt, true));
             
             li.append(divEdit);
         }
         ul.append(li)
 }
 
-// async function shareTT(tt) {
-    
-// }
-
 async function deleteOne(tt) {
     await myAPI.delete(`/profil/${tt._id}`)
     await fetchAll();
 }
+// async unshareTT(tt){
+
+// }
 // async function deleteSharedOne(tt){
 //     await myAPI.delete(`/profil/share/${tt._id}`);
 //     await fetchShare();
