@@ -6,7 +6,7 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#divCreate").append(clone);
     });
 fetchAll();
-fetchShare();
+
 // document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
 // document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
@@ -23,23 +23,40 @@ async function fetchShare() {
     }
 }
 
-async function editTT(tt , shared=false) {
+async function editTT(tt) {
     try {
         const editedTT= await myAPI.get(`/profil/${tt._id}`);
+        const all=await myAPI.post('/users');
+        // console.log(all);
         const clone = document.querySelector("#editTT").content.cloneNode(true);
         document.getElementById(tt._id).innerHTML= "";
         document.getElementById(tt._id).append(clone);
+        const editForm= document.querySelector('#editForm');
+        // console.log(tt.participants);
+        all.data.forEach((el) => {
+            const input= document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('name', el.username);
+            input.setAttribute('id', el.username);
+            input.classList.add('updateShare');
+            const label= document.createElement('label');
+            label.setAttribute('for', el.username);
+            label.textContent= el.username;
+            for(const user of tt.participants){
+                if(user._id===el._id){
+                    input.checked= true;
+                }
+            }
+            const divInp= document.createElement('div');
+            divInp.append(input, label);
+            editForm.append(divInp);
+        })
         
-        // if(!shared){
-            document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
-            document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-            document.querySelector('#editBtn').classList.add(tt._id);
-            document.querySelector('#editBtn').textContent= "Update";
-        // }
-        // else {
-            // document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
-            // document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-        // }
+        document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
+        document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
+        // document.querySelector('#editBtn').classList.add(tt._id);
+        document.querySelector('#editBtn').textContent= "Update";
+        
     } catch (error) {
         console.error(error);
     }
@@ -52,6 +69,7 @@ async function fetchAll() {
         const allTT= await myAPI.get('/profil/timetables')
         allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
+        fetchShare();
     } catch (error) {
         console.error(error);
     }
@@ -67,17 +85,18 @@ function createLi(tt, ul, shared){
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
         const whithUl= document.createElement('ul');
-        const h3= document.createElement('h3');
-        h3.textContent= "List of Participants";
+        const h6= document.createElement('h6');
+        h6.textContent= "List of Participants";
         // console.log(tt);
+        whithUl.append(h6);
         tt.participants.forEach((part) => {
-            // const partObj= await User.findById(part);
-            const withLi= document.querySelector('li');
+            const withLi= document.createElement('li');
             withLi.textContent= part.username;
-            // const deletePart= document.createElement('button');
+            const deletePart= document.createElement('button');
             // deletePart.classList.add('deletePart');
             // deletePart.textContent= "Unshare";
-            whithUl.append(h3, withLi);
+            // deletePart.addEventListener('click', (event) => unshareTT(tt));
+            whithUl.append(withLi);
         })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
         li.append(delBtn, whithUl);
@@ -94,34 +113,33 @@ function createLi(tt, ul, shared){
             divEdit.append(ediBtn);
             ediBtn.addEventListener('click', (event) => editTT(tt));
             
-            // const divShare= document.createElement('div');
-            // divShare.classList.add('divShare');
-            // const shareBtn= document.createElement('button');
-            // shareBtn.textContent= "Share Time Table"
-            // divShare.append(shareBtn);
-            // shareBtn.addEventListener('click', (event) => editTT(tt, true));
             
             li.append(divEdit);
         }
         ul.append(li)
 }
 
-// async function shareTT(tt) {
-    
-// }
-
 async function deleteOne(tt) {
     await myAPI.delete(`/profil/${tt._id}`)
     await fetchAll();
 }
+// async unshareTT(tt){
+
+// }
 // async function deleteSharedOne(tt){
 //     await myAPI.delete(`/profil/share/${tt._id}`);
 //     await fetchShare();
 // }
  async function updateTT(tt) {
-    // console.log('click')
+    console.log('click')
     const title= document.querySelector('#edittitle').value;
-    const newTT= { title };
+    const partic= [];
+    document.querySelectorAll('.updateShare').forEach((el) => {
+        if(el.checked){
+            partic.push(el.name);
+        }
+    })
+    const newTT= { title , partic};
     await myAPI.patch(`/profil/${tt._id}`, newTT);
     fetchAll();
  }

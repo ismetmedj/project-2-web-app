@@ -43,8 +43,13 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   })
   router.patch('/:id', isLoggedIn, async (req, res, next) => {
     try {
-      console.log(req.body);
-      const upTT= {...req.body};
+      const partic= [];
+      for(username of req.body.partic){
+        const userShare= await User.findOne({username: username});
+        partic.push(userShare._id);
+      }
+      console.log(partic);
+      const upTT= {title: req.body.title, participants: partic};
       await TimeTable.findByIdAndUpdate(req.params.id, upTT)
       res.sendStatus(200);
     } catch (error) {
