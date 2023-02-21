@@ -7,8 +7,8 @@ const eventSchema= new Schema(
             required: true,
         },
         day: {
-            type: String,
-            enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            type: Number,
+            // enum: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             required: true,
         },
         timeTable: {
