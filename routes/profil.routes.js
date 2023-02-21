@@ -41,12 +41,12 @@ router.get('/', isLoggedIn, async (req, res, next) => {
       next(error);
     }
   })
-router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
-  console.log(req.session.currentUser._id);
-  const allShare= await TimeTable.find({participants: req.session.currentUser._id});
-  console.log('hey '+allShare);
-  res.status(200).json(allShare);
-})
+// router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
+//   console.log(req.session.currentUser._id);
+//   const allShare= await TimeTable.find({participants: req.session.currentUser._id});
+//   console.log('hey '+allShare);
+//   res.status(200).json(allShare);
+// })
   
   router.get('/timetables',isLoggedIn, async (req, res, next) => {
     const user= req.session.currentUser;
@@ -68,15 +68,15 @@ router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
     }
   })
 
-  router.delete('/share/:id', isLoggedIn, async (req, res, next) => {
-    try {
-      const noFriend= await TimeTable.findById(req.params.id);
-      const index= noFriend.participants.indexOf(req.session.currentUser._id);
-      noFriend.participants.splice(index, 1);
-      await TimeTable.findByIdAndUpdate(req.params.id, noFriend);
-      res.status(200).json(noFriend);
-    } catch (error) {
-      next(error);
-    }
-  })
+  // router.delete('/share/:id', isLoggedIn, async (req, res, next) => {
+  //   try {
+  //     const noFriend= await TimeTable.findById(req.params.id);
+  //     const index= noFriend.participants.indexOf(req.session.currentUser._id);
+  //     noFriend.participants.splice(index, 1);
+  //     await TimeTable.findByIdAndUpdate(req.params.id, noFriend);
+  //     res.status(200).json(noFriend);
+  //   } catch (error) {
+  //     next(error);
+  //   }
+  // })
   module.exports = router;

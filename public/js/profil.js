@@ -10,18 +10,18 @@ document.querySelector('#fetch').addEventListener('click', (event) => fetchAll()
 
 document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
 
-async function fetchShare() {
-    try {
-        document.querySelector('#listShare').innerHTML= '';
-        const allTT= await myAPI.get('/profil/sharedtimetables')
-        const ul= document.createElement('ul');
-        ul.classList.add('ulList');
-        allTT.data.forEach((tt) => createLi(tt, ul, true));
-        document.querySelector('#listShare').append(ul);
-    } catch (error) {
-        console.error(error);
-    }
-}
+// async function fetchShare() {
+//     try {
+//         document.querySelector('#listShare').innerHTML= '';
+//         const allTT= await myAPI.get('/profil/sharedtimetables')
+//         const ul= document.createElement('ul');
+//         ul.classList.add('ulList');
+//         allTT.data.forEach((tt) => createLi(tt, ul, true));
+//         document.querySelector('#listShare').append(ul);
+//     } catch (error) {
+//         console.error(error);
+//     }
+// }
 
 async function editTT(tt , shared=false) {
     try {
@@ -95,18 +95,18 @@ function createLi(tt, ul, shared){
         ul.append(li)
 }
 
-async function shareTT(tt) {
+// async function shareTT(tt) {
     
-}
+// }
 
 async function deleteOne(tt) {
     await myAPI.delete(`/profil/${tt._id}`)
     await fetchAll();
 }
-async function deleteSharedOne(tt){
-    await myAPI.delete(`/profil/share/${tt._id}`);
-    await fetchShare();
-}
+// async function deleteSharedOne(tt){
+//     await myAPI.delete(`/profil/share/${tt._id}`);
+//     await fetchShare();
+// }
  async function updateTT(tt) {
     // console.log('click')
     const title= document.querySelector('#edittitle').value;
