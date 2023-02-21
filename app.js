@@ -18,6 +18,14 @@ const app = express()
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require('./config')(app)
 
+app.use((req, res, next) => {
+      if (req.session.currentUser) {
+        res.locals.currentUser = req.session.currentUser
+        res.locals.isLoggedIn = true
+      }
+      next() 
+})
+
 const capitalize = require('./utils/capitalize')
 const projectName = 'Project-2'
 

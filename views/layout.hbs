@@ -23,12 +23,16 @@
     <header>
       <nav>
         <ul>
+          <li><a href="/">Home</a></li>
+           {{#unless isLoggedIn}}
           <li><a href="/auth/signup">Sign Up</a></li>
           <li><a href="/auth/login">Log In</a></li>
-          <li><a href="/auth/logout">Log Out</a></li>
-          <li><a href="/">Home</a></li>
+          {{/unless}}
+            {{#if isLoggedIn}}
           <li><a href="/profil">Profil</a></li>
+          <li><a href="/auth/logout">Log Out</a></li>
           <li><a href="/users">Users</a></li>
+          {{/if}}
         </ul>
       </nav>
     </header>
