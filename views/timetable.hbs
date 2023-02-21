@@ -1,12 +1,13 @@
 <h1>{{TT.title}}</h1>
 <div id="divBtn"></div>
 <section id="grid"></section>
+
 <template id="createEvent">
-  <form action="/timetable/:idTT" method="post">
+  <form id="newEvent">
     <label for="title">Title</label>
     <input type="text" name="title" id="title" />
     <label for="content">Content</label>
-    <input type="text" name />
+    <input type="text" name="content" id="content" />
     <label for="hour">Hour</label>
     <select name="hour" id="hour">
       <option value="8">8</option>
@@ -22,14 +23,14 @@
       <option value="18">18</option>
     </select>
     <select name="day" id="day">
-      <option value="monday">Monday</option>
-      <option value="thuesday">Thuesday</option>
-      <option value="wednesday">Wednesday</option>
-      <option value="thursday">Thursday</option>
-      <option value="friday">Friday</option>
-      <option value="saturday">Saturday</option>
-      <option value="sunday">Sunday</option>
+      <option value="Monday">Monday</option>
+      <option value="Thuesday">Thuesday</option>
+      <option value="Wednesday">Wednesday</option>
+      <option value="Thursday">Thursday</option>
+      <option value="Friday">Friday</option>
+      <option value="Saturday">Saturday</option>
+      <option value="Sunday">Sunday</option>
     </select>
-    <button>Create</button>
   </form>
+    <button id="addAnEvent">Create</button>
 </template>

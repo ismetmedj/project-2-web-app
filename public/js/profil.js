@@ -8,7 +8,7 @@ document.querySelector("#create").addEventListener("click", (event) => {
 
 document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
-document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
+// document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
 
 // async function fetchShare() {
 //     try {
@@ -27,11 +27,14 @@ async function editTT(tt , shared=false) {
     try {
         const editedTT= await myAPI.get(`/profil/${tt._id}`);
         const clone = document.querySelector("#editTT").content.cloneNode(true);
-        document.querySelector('.divEdit').innerHTML= "";
-        document.querySelector('.divEdit').append(clone);
+        document.getElementById(tt._id).innerHTML= "";
+        document.getElementById(tt._id).append(clone);
+        
         if(!shared){
             document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
             document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
+            document.querySelector('#editBtn').classList.add(tt._id);
+            document.querySelector('#editBtn').textContent= "Update";
         }else {
             // document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
             document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
@@ -60,38 +63,39 @@ function createLi(tt, ul, shared){
         a.textContent=  tt.title;
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
-        const whithUl= document.createElement('ul');
-        tt.participants.forEach(async (part) => {
-            const partObj= await User.findById(part);
-            const withLi= document.querySelector('li');
-            withLi.textContent= 'aeuzaeu'+partObj.username;
-            const deletePart= document.createElement('button');
-            deletePart.classList.add('deletePart');
-            whithUl.append(withLi, deletePart);
-        })
-        if(!shared){
-            delBtn.addEventListener('click', (event) => deleteOne(tt));
-        }else {
-            delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
-        }
-        li.append(a, whithUl, delBtn);
-        if(!shared){
+        // const whithUl= document.createElement('ul');
+        // tt.participants.forEach(async (part) => {
+        //     const partObj= await User.findById(part);
+        //     const withLi= document.querySelector('li');
+        //     withLi.textContent= 'aeuzaeu'+partObj.username;
+        //     const deletePart= document.createElement('button');
+        //     deletePart.classList.add('deletePart');
+        //     whithUl.append(withLi, deletePart);
+        // })
+        // if(!shared){
+        delBtn.addEventListener('click', (event) => deleteOne(tt));
+        // }else {
+        //     delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
+        // }
+        li.append(a, delBtn);
+        // if(!shared){
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
             const divEdit= document.createElement('div');
             divEdit.classList.add('divEdit');
+            divEdit.setAttribute('id', tt._id);
             divEdit.append(ediBtn);
             ediBtn.addEventListener('click', (event) => editTT(tt));
             
-            const divShare= document.createElement('div');
-            divShare.classList.add('divShare');
-            const shareBtn= document.createElement('button');
-            shareBtn.textContent= "Share Time Table"
-            divShare.append(shareBtn);
-            shareBtn.addEventListener('click', (event) => editTT(tt, true));
+            // const divShare= document.createElement('div');
+            // divShare.classList.add('divShare');
+            // const shareBtn= document.createElement('button');
+            // shareBtn.textContent= "Share Time Table"
+            // divShare.append(shareBtn);
+            // shareBtn.addEventListener('click', (event) => editTT(tt, true));
             
-            li.append(divEdit, divShare);
-        }
+            li.append(divEdit);
+        // }
         ul.append(li)
 }
 

@@ -6,15 +6,33 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 
-  launchTimetable();
-  
+launchTimetable();
+createBtnEvent();
+function createBtnEvent () {  
+  // console.log('ded');
   const eventBtn = document.createElement("button");
   eventBtn.classList.add("createEvent");
   eventBtn.textContent = "create event";
   document.querySelector("#divBtn").append(eventBtn);
-  eventBtn.addEventListener("click", (event) => {
-    const clone = document
-    .querySelector("#createEvent")
-    .content.cloneNode(true);
-    document.querySelector("#diBtn").append(clone);
-  });
+  eventBtn.addEventListener("click", (event) => cloneFormEvent());
+}
+const cloneFormEvent = () => {
+  const clone = document
+  .querySelector("#createEvent")
+  .content.cloneNode(true);
+  document.querySelector("#divBtn").innerHTML= ''
+  document.querySelector("#divBtn").append(clone);
+  document.querySelector('#addAnEvent').addEventListener('click', (event) => createAnEvent());
+}
+
+const createAnEvent= async  () => {
+  const title= document.querySelector('#title').value;
+  const content= document.querySelector('#content').value;
+  const hour= document.querySelector('#hour').value;
+  const day= document.querySelector('#day').value;
+  const url= document.location.href;
+  const id=url.slice(32);
+  const newEvent= { hour, day, content, title};
+  const res= await myAPI.post(`/timetable/${id}`, newEvent);
+  console.log(res.data);
+}
