@@ -5,23 +5,23 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#divCreate").innerHTML = "";
       document.querySelector("#divCreate").append(clone);
     });
-
-document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
+fetchAll();
+fetchShare();
+// document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
 // document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
 
-// async function fetchShare() {
-//     try {
-//         document.querySelector('#listShare').innerHTML= '';
-//         const allTT= await myAPI.get('/profil/sharedtimetables')
-//         const ul= document.createElement('ul');
-//         ul.classList.add('ulList');
-//         allTT.data.forEach((tt) => createLi(tt, ul, true));
-//         document.querySelector('#listShare').append(ul);
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
+async function fetchShare() {
+    try {
+        // document.querySelector('#listShare').innerHTML= '';
+        const allTT= await myAPI.get('/profil/sharedtimetables')
+        const ul= document.querySelector('.ulList');
+        allTT.data.forEach((tt) => createLi(tt, ul, true));
+        document.querySelector('#list').append(ul);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
 async function editTT(tt , shared=false) {
     try {
@@ -30,25 +30,26 @@ async function editTT(tt , shared=false) {
         document.getElementById(tt._id).innerHTML= "";
         document.getElementById(tt._id).append(clone);
         
-        if(!shared){
+        // if(!shared){
             document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
             document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
             document.querySelector('#editBtn').classList.add(tt._id);
             document.querySelector('#editBtn').textContent= "Update";
-        }else {
+        // }
+        // else {
             // document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
-            document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-        }
+            // document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
+        // }
     } catch (error) {
         console.error(error);
     }
 }
 async function fetchAll() {
+    document.querySelector('#list').innerHTML= '';
+    const ul= document.createElement('ul');
+    ul.classList.add('ulList');
     try {
-        document.querySelector('#list').innerHTML= '';
         const allTT= await myAPI.get('/profil/timetables')
-        const ul= document.createElement('ul');
-        ul.classList.add('ulList');
         allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
     } catch (error) {
@@ -57,28 +58,34 @@ async function fetchAll() {
 }
 
 function createLi(tt, ul, shared){
-        const li= document.createElement('li');
-        const a= document.createElement('a');
-        a.href = "/timetable/"+tt._id;
-        a.textContent=  tt.title;
+    const li= document.createElement('li');
+    const a= document.createElement('a');
+    a.href = "/timetable/"+tt._id;
+    a.textContent=  tt.title;
+    li.append(a);
+    if(!shared){
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
-        // const whithUl= document.createElement('ul');
-        // tt.participants.forEach(async (part) => {
-        //     const partObj= await User.findById(part);
-        //     const withLi= document.querySelector('li');
-        //     withLi.textContent= 'aeuzaeu'+partObj.username;
-        //     const deletePart= document.createElement('button');
-        //     deletePart.classList.add('deletePart');
-        //     whithUl.append(withLi, deletePart);
-        // })
-        // if(!shared){
+        const whithUl= document.createElement('ul');
+        const h3= document.createElement('h3');
+        h3.textContent= "List of Participants";
+        // console.log(tt);
+        tt.participants.forEach((part) => {
+            // const partObj= await User.findById(part);
+            const withLi= document.querySelector('li');
+            withLi.textContent= part.username;
+            // const deletePart= document.createElement('button');
+            // deletePart.classList.add('deletePart');
+            // deletePart.textContent= "Unshare";
+            whithUl.append(h3, withLi);
+        })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
-        // }else {
+        li.append(delBtn, whithUl);
+        }
+        // else {
         //     delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
         // }
-        li.append(a, delBtn);
-        // if(!shared){
+        if(!shared){
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
             const divEdit= document.createElement('div');
@@ -95,7 +102,7 @@ function createLi(tt, ul, shared){
             // shareBtn.addEventListener('click', (event) => editTT(tt, true));
             
             li.append(divEdit);
-        // }
+        }
         ul.append(li)
 }
 

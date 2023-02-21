@@ -9,4 +9,8 @@ router.get('/', (req, res, next) => {
     res.render('./auth/login')
 })
 
+router.get('/users', async (req, res, next) => {
+    const allUsers= await User.find();
+    res.render('./users', {allUsers})
+})
 module.exports = router

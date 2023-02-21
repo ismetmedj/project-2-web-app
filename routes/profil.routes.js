@@ -10,7 +10,8 @@ router.get('/', isLoggedIn, async (req, res, next) => {
     // console.log('   '+user);
     try {
       const allTT= await TimeTable.find({admin: user._id});
-      res.render('profil', {user, allTT, script: ['profil']});
+      const allUsers= await User.find({username: {"$not": RegExp(user.username)}});
+      res.render('profil', {user,allUsers, allTT, script: ['profil']});
     } catch (error) {
       next(error);
     }
@@ -18,11 +19,20 @@ router.get('/', isLoggedIn, async (req, res, next) => {
   
   router.post('/', isLoggedIn, async (req, res, next)=> {
     try {
+      console.log(req.body);
+      const partic= [];
+      for(key in req.body){
+        if(req.body[key]==='on'){
+          const userShare= await User.findOne({username: key});
+          partic.push(userShare._id);
+        }
+      }
+      console.log(partic);
       const userId= await User.findOne({username: req.session.currentUser.username});
       const createTT= {
         title: req.body.title,
         admin: userId._id,
-        participants: [],
+        participants: partic,
       }
       const newTimeTable = await TimeTable.create(createTT);
       
@@ -41,16 +51,16 @@ router.get('/', isLoggedIn, async (req, res, next) => {
       next(error);
     }
   })
-// router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
-//   console.log(req.session.currentUser._id);
-//   const allShare= await TimeTable.find({participants: req.session.currentUser._id});
-//   console.log('hey '+allShare);
-//   res.status(200).json(allShare);
-// })
+router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
+  console.log(req.session.currentUser._id);
+  const allShare= await TimeTable.find({participants: req.session.currentUser._id});
+  console.log('hey '+allShare);
+  res.status(200).json(allShare);
+})
   
   router.get('/timetables',isLoggedIn, async (req, res, next) => {
     const user= req.session.currentUser;
-    const allTT= await TimeTable.find({admin: user._id});
+    const allTT= await TimeTable.find({admin: user._id}).populate('participants');
     
     res.status(200).json(allTT);
   })
