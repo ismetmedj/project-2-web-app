@@ -6,7 +6,7 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#divCreate").append(clone);
     });
 fetchAll();
-fetchShare();
+
 // document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
 // document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
@@ -54,7 +54,7 @@ async function editTT(tt) {
         
         document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
         document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
-        document.querySelector('#editBtn').classList.add(tt._id);
+        // document.querySelector('#editBtn').classList.add(tt._id);
         document.querySelector('#editBtn').textContent= "Update";
         
     } catch (error) {
@@ -69,6 +69,7 @@ async function fetchAll() {
         const allTT= await myAPI.get('/profil/timetables')
         allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
+        fetchShare();
     } catch (error) {
         console.error(error);
     }
@@ -88,13 +89,13 @@ function createLi(tt, ul, shared){
         h3.textContent= "List of Participants";
         // console.log(tt);
         tt.participants.forEach((part) => {
-            // const partObj= await User.findById(part);
-            const withLi= document.querySelector('li');
+            const withLi= document.createElement('li');
             withLi.textContent= part.username;
+            whithUl.append(h3, withLi);
+            // const partObj= await User.findById(part);
             // const deletePart= document.createElement('button');
             // deletePart.classList.add('deletePart');
             // deletePart.textContent= "Unshare";
-            whithUl.append(h3, withLi);
         })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
         li.append(delBtn, whithUl);
@@ -136,7 +137,7 @@ async function deleteOne(tt) {
 //     await fetchShare();
 // }
  async function updateTT(tt) {
-    // console.log('click')
+    console.log('click')
     const title= document.querySelector('#edittitle').value;
     const partic= [];
     document.querySelectorAll('.updateShare').forEach((el) => {
