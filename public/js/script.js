@@ -17,14 +17,15 @@ function createBtnEvent () {
   eventBtn.textContent = "create event";
   document.querySelector("#divBtn").append(eventBtn);
   eventBtn.addEventListener("click", (event) => cloneFormEvent());
+
 }
 const cloneFormEvent = () => {
-  const clone = document
-  .querySelector("#createEvent")
-  .content.cloneNode(true);
-  document.querySelector("#divBtn").innerHTML= ''
-  document.querySelector("#divBtn").append(clone);
-  document.querySelector('#addAnEvent').addEventListener('click', (event) => createAnEvent());
+    const clone = document.querySelector('#createEvent').content.cloneNode(true)
+    document.querySelector('#divBtn').innerHTML = ''
+    document.querySelector('#divBtn').append(clone)
+    document
+        .querySelector('#addAnEvent')
+        .addEventListener('click', (event) => createAnEvent())
 }
 
 const createAnEvent= async  () => {
@@ -41,6 +42,9 @@ const createAnEvent= async  () => {
   createBtnEvent();
   listEvent();
   // const listDiv= document.querySelector('div');
+      const selectedCell = cells[hour - 7][day + 1]
+    selectedCell.textContent = title
+
   
 }
 async function listEvent(){
@@ -93,3 +97,4 @@ async function deleteEvent(event) {
   // console.log('ok')
   await listEvent();
 }
+

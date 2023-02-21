@@ -1,21 +1,21 @@
 [
     {
         "hour": 8,
-        "day": "Monday",
+        "day": 0,
         "timeTable": "Semaine 1",
         "content": "test1",
         "title": "test1"
     },
     {
         "hour": 12,
-        "day": "Tuesday",
+        "day": 1,
         "timeTable": "Semaine 2",
         "content": "test2",
         "title": "test2"
     },
     {
         "hour": 16,
-        "day": "Wednesday",
+        "day": 2,
         "timeTable": "Semaine 3",
         "content": "test3",
         "title": "test3"
