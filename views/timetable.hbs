@@ -2,14 +2,18 @@
 <div id="Affichage">
   <div id="divBtn"></div>
 {{!-- <div id="list"><ul id="ullist"></ul></div> --}}
-  <div>
+</div>
+<section id="grid"></section>
+<template id="templateEdit">
+  <div id="afficheEvent">
     <div id="printEvent">
+      <div id="titleclose"><h2 id="h2edit"></h2><button id="closeedit"></button></div>
     </div>
+    <div id="contentEdit"></div>
     <div id="editDiv"></div>
     </div>
   </div>
-</div>
-<section id="grid"></section>
+</template>
 
 <template id="createEvent">
   <form id="newEvent">
@@ -42,3 +46,4 @@
     <input type="color" name="color" id="color" value="#FFFFFF">
   </form>
     <button id="addAnEvent">Create</button>
+</template>
