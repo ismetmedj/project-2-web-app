@@ -4,27 +4,23 @@
   }
 </style>
 
-<h1 class="main-title">Welcome to MyLittleTimeTable</h1>
-
 <main class="main-login-signup">
-<h2 class="login-title">Please, log in.</h2>
-  <div class="form-login-signup">
-    <form action="/auth/login" method="POST" class="form">
 
-      <label> Username
-        <input type="text" name="username" placeholder="Your username" />
-      </label>
+  <h1 class="main-title animate__animated animate__fadeInDown">TeamTables.</h1>
+ 
+ <section class="title-section">
+  <h2 class="login-title">Please, log in.</h2>
+    <div class="form-login-signup">
+      <form action="/auth/login" method="POST" class="form" id="form">
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="password" placeholder="Password" />
 
-      <label> Password
-        <input type="password" name="password" placeholder="Your password" />
-      </label>
-
-      <button type="submit">Log In</button>
-      
-      {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-      {{/if}}
-    </form>
-    <p>No account yet ?<a href="/auth/signup"> Sign up!</a></p>
-  </div>
+        {{#if errorMessage}}
+          <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+      <input type="submit" form="form" value="Log In" class="bn54"/>
+      <p>No account yet ?<a href="/auth/signup"> Sign up!</a></p>
+    </div>
+ </section>
 </main>
