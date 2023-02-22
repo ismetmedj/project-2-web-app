@@ -102,11 +102,13 @@ const createAnEvent= async  () => {
   const content= document.querySelector('#content').value;
   const hour= document.querySelector('#hour').value;
   const day= document.querySelector('#day').value;
+  const color= document.querySelector('#color').value;
+  // console.log(typeof(color));
+  // console.log(document.querySelector('#color'));
   if(title!==''){
-    const newEvent= { hour, day, content, title};
+    const newEvent= { hour, day, content, title, color};
     const res= await myAPI.post(`/timetable/${id}`, newEvent);
   }
-  // console.log(res.data);
   document.querySelector('#divBtn').innerHTML= "";
   createBtnEvent();
   listEvent();
@@ -114,9 +116,15 @@ const createAnEvent= async  () => {
   
 }
 async function listEvent(){
-  const ul= document.querySelector('#ullist');
-  ul.innerHTML= '';
-  document.querySelectorAll('.event').forEach((el) => el.innerHTML='')
+  // const ul= document.querySelector('#ullist');
+  // ul.innerHTML= '';
+  const casevent = document.querySelectorAll('.event');
+  casevent.forEach((el) => {
+    el.innerHTML='';
+    // const nbDiv= el.childElementCount;
+    // console.log(nbDiv);
+    // el.scrollTop= nbDiv;
+  });
   const allEvent= await myAPI.get(`/timetable/${id}/event`);
   allEvent.data.forEach((oneEvent) => {
     const day= oneEvent.day;
@@ -128,6 +136,8 @@ async function listEvent(){
     const divEvent= document.createElement('div');
     divEvent.setAttribute('id', oneEvent._id);
     divEvent.textContent= oneEvent.title;
+    divEvent.style.backgroundColor= oneEvent.color;
+    // console.log(oneEvent.color);
     divEvent.addEventListener('click', (event) => printEvent(oneEvent));
     div.append(divEvent);
 
@@ -146,17 +156,30 @@ async function listEvent(){
     // }
     // ul.append(li);
   })
+  casevent.forEach((el) => {
+    // el.innerHTML='';
+    // console.log(el.offsetHeight);
+    if(el.offsetHeight > el.scrollHeight){
+      el.classList.add('contained');
+    }else {
+      el.classList.remove('contained');
+    }
+    // console.log(el);
+    // el.scrollTop= nbDiv;
+  });
 }
 
 async function printEvent(oneEvent) {
   const printDiv= document.querySelector('#printEvent');
   printDiv.innerHTML='';
+  document.querySelector('#editDiv').innerHTML= "";
   const titleElem= document.createElement('h2');
   titleElem.textContent= oneEvent.title;
   const days= ['Monday', 'Thuesday', 'Wednasday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
   const contentElem= document.createElement('div');
   contentElem.textContent= oneEvent.content+' at '+oneEvent.hour+"o'clock on "+days[oneEvent.day];
   printDiv.append(titleElem, contentElem);
+  printDiv.parentNode.style.backgroundColor= oneEvent.color;
   if(authRight){
     const delBtn= document.createElement('button');
     delBtn.textContent= "Delete";
@@ -164,7 +187,8 @@ async function printEvent(oneEvent) {
     const ediBtn= document.createElement('button');
     ediBtn.textContent= "Edit";
     ediBtn.addEventListener('click', (event) => editForm(oneEvent));
-    printDiv.append(delBtn, ediBtn);
+    printDiv.append(delBtn);
+    document.getElementById('editDiv').append(ediBtn);
   }
 }
 
@@ -172,14 +196,18 @@ async function editForm(oneEvent) {
   const clone = document
   .querySelector("#createEvent")
   .content.cloneNode(true);
-  // document.getElementById(oneEvent._id).innerHTML= ''
-  document.getElementById('printEvent').append(clone);
+  // console.log()
+  document.getElementById('editDiv').innerHTML= ''
+  document.getElementById('editDiv').append(clone);
   // console.log(document.querySelector('#newEvent>#title'));
   document.querySelector('#newEvent>#title').setAttribute('value', oneEvent.title);
   document.querySelector('#newEvent>#content').setAttribute('value', oneEvent.content);
   document.querySelector(`#newEvent>#hour`).value= oneEvent.hour;
   document.querySelector(`#newEvent>#day`).value= oneEvent.day;
+  document.querySelector('#newEvent>#color').value= oneEvent.color;
+  document.querySelector('#addAnEvent').textContent= "Update";
   document.querySelector('#addAnEvent').addEventListener('click', (event) => editEvent(oneEvent));
+  // editForm(oneEvent);
 }
 async function editEvent(oneEvent){
   const updatedEvent= {
@@ -187,17 +215,33 @@ async function editEvent(oneEvent){
     content: document.querySelector('#newEvent>#content').value,
     hour: document.querySelector(`#newEvent>#hour`).value,
     day: document.querySelector(`#newEvent>#day`).value,
+    color: document.querySelector('#newEvent>#color').value,
     timeTable: id,
   }
   // console.log('ok');
   await myAPI.patch(`timetable/${id}/event/${oneEvent._id}`, updatedEvent);
   // console.log('ok');
   await listEvent();
+  const Div= document.querySelector('#printEvent');
+  const Divparent= Div.parentNode;
+  Divparent.innerHTML='';
+  const editdiv= document.createElement('div');
+  editdiv.setAttribute('id', 'editDiv')
+  const printdiv= document.createElement('div');
+  printdiv.setAttribute('id', 'printEvent')
+  Divparent.append(printdiv, editdiv);
+  // await editForm(oneEvent);
 }
 async function deleteEvent(event) {
   await myAPI.delete(`/timetable/event/${event._id}`);
-  const printDiv= document.querySelector('#printEvent');
-  printDiv.innerHTML='';
+  const Div= document.querySelector('#printEvent');
+  const Divparent= Div.parentNode;
+  Divparent.innerHTML='';
+  const editdiv= document.createElement('div');
+  editdiv.setAttribute('id', 'editDiv')
+  const printdiv= document.createElement('div');
+  printdiv.setAttribute('id', 'printEvent')
+  Divparent.append(printdiv, editdiv);
   // console.log('ok')
   await listEvent();
 }

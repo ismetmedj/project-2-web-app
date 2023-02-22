@@ -1,5 +1,5 @@
 body {
-    padding: 50px;
+    /* padding: 50px; */
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -74,8 +74,8 @@ h1 {
 
 #grid {
     display: grid;
-    margin-top: 4rem;
-    padding: 2rem;
+    /* margin-top: 4rem; */
+    padding: 1rem 2rem;
     grid-template-columns: repeat(8, 11vw);
     grid-template-rows: repeat(11, 7vh);
 }
@@ -94,3 +94,25 @@ header>nav>ul{
   display: flex;
   justify-content: space-between;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.event.contained::-webkit-scrollbar {
+    display: none;
+   }
+   
+   /* Hide scrollbar for IE, Edge and Firefox */
+.event.contained{
+    overflow-y: hidden;
+    background-color: blueviolet;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.event{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* #Affichage {
+    display: flex;
+    justify-content: space-between;
+} */
