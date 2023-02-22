@@ -18,7 +18,7 @@ async function isAdmin() {
 }
 // console.log(authRight);
 // 
-launchTimetable();
+const cells= launchTimetable();
 if(authRight){
   createBtnEvent();
 }
@@ -119,16 +119,17 @@ async function listEvent(){
   document.querySelectorAll('.cell').forEach((el) => el.innerHTML='')
   const allEvent= await myAPI.get(`/timetable/${id}/event`);
   allEvent.data.forEach((oneEvent) => {
-    const d= oneEvent.day;
-    const h= oneEvent.hour;
+    const day= oneEvent.day;
+    const hour= oneEvent.hour;
     // console.log(d+ '  '+ h);
-    const div= document.getElementsByClassName(`d${d} ${h}o`);
+    const div= cells[hour - 7][day + 1];
+    // const div= document.getElementsByClassName(`d${d} ${h}o`);
     // console.log(div);
     const divEvent= document.createElement('div');
     divEvent.setAttribute('id', oneEvent._id);
     divEvent.textContent= oneEvent.title;
     divEvent.addEventListener('click', (event) => printEvent(oneEvent));
-    div[0].append(divEvent);
+    div.append(divEvent);
 
 
     const li= document.createElement('li');
@@ -190,38 +191,38 @@ async function deleteEvent(event) {
   await listEvent();
 }
 
-async function editForm(oneEvent) {
-    const clone = document.querySelector('#createEvent').content.cloneNode(true)
-    document.getElementById(oneEvent._id).innerHTML = ''
-    document.getElementById(oneEvent._id).append(clone)
-    // console.log(document.querySelector('#newEvent>#title'));
-    document
-        .querySelector('#newEvent>#title')
-        .setAttribute('value', oneEvent.title)
-    document
-        .querySelector('#newEvent>#content')
-        .setAttribute('value', oneEvent.content)
-    document.querySelector(`#newEvent>#hour`).value = oneEvent.hour
-    document.querySelector(`#newEvent>#day`).value = oneEvent.day
-    document
-        .querySelector('#addAnEvent')
-        .addEventListener('click', (event) => editEvent(oneEvent))
-}
-async function editEvent(oneEvent) {
-    const updatedEvent = {
-        title: document.querySelector('#newEvent>#title').value,
-        content: document.querySelector('#newEvent>#content').value,
-        hour: document.querySelector(`#newEvent>#hour`).value,
-        day: document.querySelector(`#newEvent>#day`).value,
-        timeTable: id,
-    }
-    console.log('ok')
-    await myAPI.patch(`timetable/${id}/event/${oneEvent._id}`, updatedEvent)
-    console.log('ok')
-    await listEvent()
-}
-async function deleteEvent(event) {
-    await myAPI.delete(`/timetable/event/${event._id}`)
-    // console.log('ok')
-    await listEvent()
-}
+// async function editForm(oneEvent) {
+//     const clone = document.querySelector('#createEvent').content.cloneNode(true)
+//     document.getElementById(oneEvent._id).innerHTML = ''
+//     document.getElementById(oneEvent._id).append(clone)
+//     // console.log(document.querySelector('#newEvent>#title'));
+//     document
+//         .querySelector('#newEvent>#title')
+//         .setAttribute('value', oneEvent.title)
+//     document
+//         .querySelector('#newEvent>#content')
+//         .setAttribute('value', oneEvent.content)
+//     document.querySelector(`#newEvent>#hour`).value = oneEvent.hour
+//     document.querySelector(`#newEvent>#day`).value = oneEvent.day
+//     document
+//         .querySelector('#addAnEvent')
+//         .addEventListener('click', (event) => editEvent(oneEvent))
+// }
+// async function editEvent(oneEvent) {
+//     const updatedEvent = {
+//         title: document.querySelector('#newEvent>#title').value,
+//         content: document.querySelector('#newEvent>#content').value,
+//         hour: document.querySelector(`#newEvent>#hour`).value,
+//         day: document.querySelector(`#newEvent>#day`).value,
+//         timeTable: id,
+//     }
+//     console.log('ok')
+//     await myAPI.patch(`timetable/${id}/event/${oneEvent._id}`, updatedEvent)
+//     console.log('ok')
+//     await listEvent()
+// }
+// async function deleteEvent(event) {
+//     await myAPI.delete(`/timetable/event/${event._id}`)
+//     // console.log('ok')
+//     await listEvent()
+// }
