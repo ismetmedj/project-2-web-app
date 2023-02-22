@@ -139,11 +139,11 @@ function createLi(tt, ul, shared){
     if(!shared){
         const delBtn = document.createElement('button');
         delBtn.textContent = 'Delete';
-        const whithUl= document.createElement('ul');
-        const h6= document.createElement('h6');
-        h6.textContent= "List of Participants";
+        // const whithUl= document.createElement('ul');
+        // const h6= document.createElement('h6');
+        // h6.textContent= "List of Participants";
         // console.log(tt);
-        whithUl.append(h6);
+        // whithUl.append(h6);
         // tt.participants.forEach((part) => {
         //     const withLi= document.createElement('li');
         //     withLi.textContent= part.username;
@@ -156,17 +156,17 @@ function createLi(tt, ul, shared){
         delBtn.addEventListener('click', (event) => deleteOne(tt));
         li.append(delBtn);
 
-        tt.participants.forEach((part) => {
-            const withLi= document.createElement('li');
-            withLi.textContent= part.username;
-            const deletePart= document.createElement('button');
+        // tt.participants.forEach((part) => {
+        //     const withLi= document.createElement('li');
+        //     withLi.textContent= part.username;
+        //     const deletePart= document.createElement('button');
             // deletePart.classList.add('deletePart');
             // deletePart.textContent= "Unshare";
             // deletePart.addEventListener('click', (event) => unshareTT(tt));
-            whithUl.append(withLi);
-        })
+        //     whithUl.append(withLi);
+        // })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
-        li.append(delBtn, whithUl);
+        li.append(delBtn);
         }
         // else {
         //     delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
@@ -198,7 +198,7 @@ async function deleteOne(tt) {
 //     await fetchShare();
 // }
  async function updateTT(tt) {
-    console.log('click')
+    // console.log('click')
     const title= document.querySelector('#edittitle').value;
     const partic= [];
     const edito= [];
@@ -219,6 +219,6 @@ async function deleteOne(tt) {
     //     }
     // })
     // const newTT= { title , partic};
-    // await myAPI.patch(`/profil/${tt._id}`, newTT);
-    // fetchAll();
+    await myAPI.patch(`/profil/${tt._id}`, newTT);
+    fetchAll();
  }
