@@ -1,14 +1,14 @@
 [
     {
-        "title": "Semaine 1",
+        "title": "Week 1",
         "admin": "ismet"
     },
     {
-        "title": "Semaine 2",
+        "title": "Holiday week",
         "admin": "kilian"
     },
     {
-        "title": "Semaine 3",
+        "title": "Work week",
         "admin": "cedric"
     }
 ]
