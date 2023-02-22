@@ -1,4 +1,4 @@
 const myAPI = axios.create({
-    baseURL: process.env.BASE_URL || 'http://localhost:3000',
+    baseURL: 'https://project-2-iron-hack.onrender.com',
 })
 export default myAPI
