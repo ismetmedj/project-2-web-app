@@ -2,22 +2,113 @@
     {
         "hour": 8,
         "day": 0,
-        "timeTable": "Semaine 1",
-        "content": "test1",
-        "title": "test1"
+        "timeTable": "Week 1",
+        "content": "Workout with Kilian",
+        "title": "Workout"
     },
     {
         "hour": 12,
+        "day": 2,
+        "timeTable": "Week 1",
+        "content": "Lunch with Cedric",
+        "title": "Lunch "
+    },
+    {
+        "hour": 14,
+        "day": 3,
+        "timeTable": "Week 1",
+        "content": "Bring previous blood analyse",
+        "title": "Doctor appointment"
+    },
+    {
+        "hour": 17,
+        "day": 4,
+        "timeTable": "Week 1",
+        "content": "Workout with Kilian",
+        "title": "Workout"
+    },
+    {
+        "hour": 10,
+        "day": 5,
+        "timeTable": "Week 1",
+        "content": "meet there at 9:30 to warm up first",
+        "title": "Football Game"
+    },
+    {
+        "hour": 10,
+        "day": 6,
+        "timeTable": "Week 1",
+        "content": "Get Dad from the airport",
+        "title": "Dad"
+    },
+    {
+        "hour": 9,
         "day": 1,
-        "timeTable": "Semaine 2",
-        "content": "test2",
-        "title": "test2"
+        "timeTable": "Holiday week",
+        "content": "Visit Moma , tickets received by mail",
+        "title": "Moma"
+    },
+    {
+        "hour": 9,
+        "day": 3,
+        "timeTable": "Holiday week",
+        "content": "Metropolitan musuem, be there early",
+        "title": "Mets"
+    },
+    {
+        "hour": 13,
+        "day": 4,
+        "timeTable": "Holiday week",
+        "content": "Plan to stay the whole afternoon",
+        "title": "Empire State Building"
+    },
+    {
+        "hour": 12,
+        "day": 5,
+        "timeTable": "Holiday week",
+        "content": "",
+        "title": "Lunch at Taco Bell"
+    },
+    {
+        "hour": 17,
+        "day": 6,
+        "timeTable": "Holiday week",
+        "content": "Taxi at 2pm",
+        "title": "Flight back home"
+    },
+    {
+        "hour": 9,
+        "day": 1,
+        "timeTable": "Work week",
+        "content": "Setting the goals of the week",
+        "title": "Team meeting"
+    },
+    {
+        "hour": 12,
+        "day": 2,
+        "timeTable": "Work week",
+        "content": "Meetting with all the head chiefs",
+        "title": "Boss Meeting"
+    },
+    {
+        "hour": 14,
+        "day": 3,
+        "timeTable": "Work week",
+        "content": "",
+        "title": "Dev Meeting"
+    },
+    {
+        "hour": 15,
+        "day": 4,
+        "timeTable": "Work week",
+        "content": "Plan the Marketing strategy with the set up done with the dev team",
+        "title": "Marketing Meeting"
     },
     {
         "hour": 16,
-        "day": 2,
-        "timeTable": "Semaine 3",
-        "content": "test3",
-        "title": "test3"
+        "day": 5,
+        "timeTable": "Work week",
+        "content": "Did we achieve the week's goals ?",
+        "title": "End Week Meeting"
     }
 ]
