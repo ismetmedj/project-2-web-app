@@ -6,19 +6,9 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#divCreate").append(clone);
     });
 fetchAll();
-// isAdmin();
-// async function isAdmin() {
-//   const user= await myAPI.get('/user');
-//   console.log(user.data._id);
-// }
-
-// document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
-
-// document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
 
 async function fetchShare() {
     try {
-        // document.querySelector('#listShare').innerHTML= '';
         const allTT= await myAPI.get('/profil/sharedtimetables')
         const ul= document.querySelector('.ulList');
         allTT.data.forEach((tt) => createLi(tt, ul, true));
@@ -32,7 +22,7 @@ async function editTT(tt) {
     try {
         const editedTT= await myAPI.get(`/profil/${tt._id}`);
         const all=await myAPI.post('/users');
-        // console.log(all);
+        // console.log(all);    
         const clone = document.querySelector("#editTT").content.cloneNode(true);
         document.getElementById(tt._id).innerHTML= "";
         document.getElementById(tt._id).append(clone);
@@ -136,42 +126,42 @@ function createLi(tt, ul, shared){
     a.href = "/timetable/"+tt._id;
     a.textContent=  tt.title;
     li.append(a);
-    if(!shared){
-        const delBtn = document.createElement('button');
-        delBtn.textContent = 'Delete';
+    // if(!shared){
         // const whithUl= document.createElement('ul');
         // const h6= document.createElement('h6');
         // h6.textContent= "List of Participants";
         // console.log(tt);
         // whithUl.append(h6);
         // tt.participants.forEach((part) => {
-        //     const withLi= document.createElement('li');
-        //     withLi.textContent= part.username;
-        //     const deletePart= document.createElement('button');
+            //     const withLi= document.createElement('li');
+            //     withLi.textContent= part.username;
+            //     const deletePart= document.createElement('button');
+            // deletePart.classList.add('deletePart');
+            // deletePart.textContent= "Unshare";
+            // deletePart.addEventListener('click', (event) => unshareTT(tt));
+            //     whithUl.append(withLi);
+            // })
+            
+            // tt.participants.forEach((part) => {
+                //     const withLi= document.createElement('li');
+                //     withLi.textContent= part.username;
+                //     const deletePart= document.createElement('button');
             // deletePart.classList.add('deletePart');
             // deletePart.textContent= "Unshare";
             // deletePart.addEventListener('click', (event) => unshareTT(tt));
         //     whithUl.append(withLi);
         // })
-        delBtn.addEventListener('click', (event) => deleteOne(tt));
-        li.append(delBtn);
-
-        // tt.participants.forEach((part) => {
-        //     const withLi= document.createElement('li');
-        //     withLi.textContent= part.username;
-        //     const deletePart= document.createElement('button');
-            // deletePart.classList.add('deletePart');
-            // deletePart.textContent= "Unshare";
-            // deletePart.addEventListener('click', (event) => unshareTT(tt));
-        //     whithUl.append(withLi);
-        // })
-        delBtn.addEventListener('click', (event) => deleteOne(tt));
-        li.append(delBtn);
-        }
+        // delBtn.addEventListener('click', (event) => deleteOne(tt));
+        // li.append(delBtn);
+        // }
         // else {
         //     delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
         // }
         if(!shared){
+            const delBtn = document.createElement('button');
+            delBtn.textContent = 'Delete';
+            delBtn.addEventListener('click', (event) => deleteOne(tt));
+            li.append(delBtn);
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
             const divEdit= document.createElement('div');
@@ -188,7 +178,7 @@ function createLi(tt, ul, shared){
 
 async function deleteOne(tt) {
     await myAPI.delete(`/profil/${tt._id}`)
-    await fetchAll();
+    fetchAll();
 }
 // async unshareTT(tt){
 
