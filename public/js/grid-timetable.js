@@ -104,6 +104,11 @@ function createHours() {
       const hours = copy[i];
       hours.classList.add("hours");
   }
+  for(let i=8; i< columns* rows ; i+=8){
+    for(let j=i+1; j<i+8; j++){
+      copy[j].classList.add('event')
+    }
+  }
 }
 /*
   // let index=8;

@@ -116,7 +116,7 @@ const createAnEvent= async  () => {
 async function listEvent(){
   const ul= document.querySelector('#ullist');
   ul.innerHTML= '';
-  document.querySelectorAll('.cell').forEach((el) => el.innerHTML='')
+  document.querySelectorAll('.event').forEach((el) => el.innerHTML='')
   const allEvent= await myAPI.get(`/timetable/${id}/event`);
   allEvent.data.forEach((oneEvent) => {
     const day= oneEvent.day;
@@ -132,19 +132,19 @@ async function listEvent(){
     div.append(divEvent);
 
 
-    const li= document.createElement('li');
-    li.setAttribute('id', oneEvent._id);
-    li.textContent= oneEvent.title+ ': '+ oneEvent.content;
-    if(authRight){
-      const delBtn= document.createElement('button');
-      delBtn.textContent= "Delete";
-      delBtn.addEventListener('click', (event) => deleteEvent(oneEvent));
-      const ediBtn= document.createElement('button');
-      ediBtn.textContent= "Edit";
-      ediBtn.addEventListener('click', (event) => editForm(oneEvent));
-      li.append(delBtn, ediBtn);
-    }
-    ul.append(li);
+    // const li= document.createElement('li');
+    // li.setAttribute('id', oneEvent._id);
+    // li.textContent= oneEvent.title+ ': '+ oneEvent.content;
+    // if(authRight){
+    //   const delBtn= document.createElement('button');
+    //   delBtn.textContent= "Delete";
+    //   delBtn.addEventListener('click', (event) => deleteEvent(oneEvent));
+    //   const ediBtn= document.createElement('button');
+    //   ediBtn.textContent= "Edit";
+    //   ediBtn.addEventListener('click', (event) => editForm(oneEvent));
+    //   li.append(delBtn, ediBtn);
+    // }
+    // ul.append(li);
   })
 }
 
@@ -157,14 +157,23 @@ async function printEvent(oneEvent) {
   const contentElem= document.createElement('div');
   contentElem.textContent= oneEvent.content+' at '+oneEvent.hour+"o'clock on "+days[oneEvent.day];
   printDiv.append(titleElem, contentElem);
+  if(authRight){
+    const delBtn= document.createElement('button');
+    delBtn.textContent= "Delete";
+    delBtn.addEventListener('click', (event) => deleteEvent(oneEvent));
+    const ediBtn= document.createElement('button');
+    ediBtn.textContent= "Edit";
+    ediBtn.addEventListener('click', (event) => editForm(oneEvent));
+    printDiv.append(delBtn, ediBtn);
+  }
 }
 
 async function editForm(oneEvent) {
   const clone = document
   .querySelector("#createEvent")
   .content.cloneNode(true);
-  document.getElementById(oneEvent._id).innerHTML= ''
-  document.getElementById(oneEvent._id).append(clone);
+  // document.getElementById(oneEvent._id).innerHTML= ''
+  document.getElementById('printEvent').append(clone);
   // console.log(document.querySelector('#newEvent>#title'));
   document.querySelector('#newEvent>#title').setAttribute('value', oneEvent.title);
   document.querySelector('#newEvent>#content').setAttribute('value', oneEvent.content);
@@ -180,13 +189,15 @@ async function editEvent(oneEvent){
     day: document.querySelector(`#newEvent>#day`).value,
     timeTable: id,
   }
-  console.log('ok');
+  // console.log('ok');
   await myAPI.patch(`timetable/${id}/event/${oneEvent._id}`, updatedEvent);
-  console.log('ok');
+  // console.log('ok');
   await listEvent();
 }
 async function deleteEvent(event) {
   await myAPI.delete(`/timetable/event/${event._id}`);
+  const printDiv= document.querySelector('#printEvent');
+  printDiv.innerHTML='';
   // console.log('ok')
   await listEvent();
 }
