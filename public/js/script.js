@@ -116,7 +116,7 @@ const createAnEvent= async  () => {
 async function listEvent(){
   const ul= document.querySelector('#ullist');
   ul.innerHTML= '';
-  document.querySelectorAll('.cell').forEach((el) => el.innerHTML='')
+  document.querySelectorAll('.event').forEach((el) => el.innerHTML='')
   const allEvent= await myAPI.get(`/timetable/${id}/event`);
   allEvent.data.forEach((oneEvent) => {
     const day= oneEvent.day;
