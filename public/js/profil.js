@@ -11,6 +11,7 @@ fetchAll();
 //   const user= await myAPI.get('/user');
 //   console.log(user.data._id);
 // }
+
 // document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
 // document.querySelector('#fetchShare').addEventListener('click', (event) => fetchShare());
@@ -82,6 +83,24 @@ async function editTT(tt) {
             //     }
             // }
             editForm.append(fieldset);
+        // console.log(tt.participants);
+        all.data.forEach((el) => {
+            const input= document.createElement('input');
+            input.setAttribute('type', 'checkbox');
+            input.setAttribute('name', el.username);
+            input.setAttribute('id', el.username);
+            input.classList.add('updateShare');
+            const label= document.createElement('label');
+            label.setAttribute('for', el.username);
+            label.textContent= el.username;
+            for(const user of tt.participants){
+                if(user._id===el._id){
+                    input.checked= true;
+                }
+            }
+            const divInp= document.createElement('div');
+            divInp.append(input, label);
+            editForm.append(divInp);
         })
         
         document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
@@ -102,6 +121,8 @@ async function fetchAll() {
         allTT.data.forEach((tt) => {
             // console.log(tt.admin);
             createLi(tt, ul, false)});
+
+        allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
         fetchShare();
     } catch (error) {
@@ -134,6 +155,18 @@ function createLi(tt, ul, shared){
         // })
         delBtn.addEventListener('click', (event) => deleteOne(tt));
         li.append(delBtn);
+
+        tt.participants.forEach((part) => {
+            const withLi= document.createElement('li');
+            withLi.textContent= part.username;
+            const deletePart= document.createElement('button');
+            // deletePart.classList.add('deletePart');
+            // deletePart.textContent= "Unshare";
+            // deletePart.addEventListener('click', (event) => unshareTT(tt));
+            whithUl.append(withLi);
+        })
+        delBtn.addEventListener('click', (event) => deleteOne(tt));
+        li.append(delBtn, whithUl);
         }
         // else {
         //     delBtn.addEventListener('click', (event) => deleteSharedOne(tt));
@@ -180,6 +213,12 @@ async function deleteOne(tt) {
         }
     })
     const newTT= { title , partic, edito};
+    document.querySelectorAll('.updateShare').forEach((el) => {
+        if(el.checked){
+            partic.push(el.name);
+        }
+    })
+    const newTT= { title , partic};
     await myAPI.patch(`/profil/${tt._id}`, newTT);
     fetchAll();
  }
