@@ -8,7 +8,7 @@ const router = express.Router();
 
 router.get('/:id/event', isLoggedIn, async (req, res, next) => {
     const allEvent= await Event.find({timeTable: req.params.id});
-    const allEvent= await Event.find({admin: req.params.id});
+    // const allEvent= await Event.find({admin: req.params.id});
     // console.log(allEvent);
     res.status(200).json(allEvent);
 })

@@ -84,23 +84,23 @@ async function editTT(tt) {
             // }
             editForm.append(fieldset);
         // console.log(tt.participants);
-        all.data.forEach((el) => {
-            const input= document.createElement('input');
-            input.setAttribute('type', 'checkbox');
-            input.setAttribute('name', el.username);
-            input.setAttribute('id', el.username);
-            input.classList.add('updateShare');
-            const label= document.createElement('label');
-            label.setAttribute('for', el.username);
-            label.textContent= el.username;
-            for(const user of tt.participants){
-                if(user._id===el._id){
-                    input.checked= true;
-                }
-            }
-            const divInp= document.createElement('div');
-            divInp.append(input, label);
-            editForm.append(divInp);
+        // all.data.forEach((el) => {
+        //     const input= document.createElement('input');
+        //     input.setAttribute('type', 'checkbox');
+        //     input.setAttribute('name', el.username);
+        //     input.setAttribute('id', el.username);
+        //     input.classList.add('updateShare');
+        //     const label= document.createElement('label');
+        //     label.setAttribute('for', el.username);
+        //     label.textContent= el.username;
+        //     for(const user of tt.participants){
+        //         if(user._id===el._id){
+        //             input.checked= true;
+        //         }
+        //     }
+        //     const divInp= document.createElement('div');
+        //     divInp.append(input, label);
+        //     editForm.append(divInp);
         })
         
         document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
@@ -122,7 +122,7 @@ async function fetchAll() {
             // console.log(tt.admin);
             createLi(tt, ul, false)});
 
-        allTT.data.forEach((tt) => createLi(tt, ul, false));
+        // allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
         fetchShare();
     } catch (error) {
@@ -213,12 +213,12 @@ async function deleteOne(tt) {
         }
     })
     const newTT= { title , partic, edito};
-    document.querySelectorAll('.updateShare').forEach((el) => {
-        if(el.checked){
-            partic.push(el.name);
-        }
-    })
-    const newTT= { title , partic};
-    await myAPI.patch(`/profil/${tt._id}`, newTT);
-    fetchAll();
+    // document.querySelectorAll('.updateShare').forEach((el) => {
+    //     if(el.checked){
+    //         partic.push(el.name);
+    //     }
+    // })
+    // const newTT= { title , partic};
+    // await myAPI.patch(`/profil/${tt._id}`, newTT);
+    // fetchAll();
  }
