@@ -15,6 +15,10 @@ const TimeTableSchema= new Schema (
             type: Schema.Types.ObjectId,
             ref:'User',
         }],
+        editors: [{
+            type: Schema.Types.ObjectId,
+            ref: 'User'
+        }]
     }
 )
 const TimeTable = model("TimeTable", TimeTableSchema);

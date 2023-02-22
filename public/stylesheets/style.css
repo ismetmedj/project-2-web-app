@@ -79,3 +79,13 @@ h1 {
   grid-template-columns: repeat(8, 11vw);
   grid-template-rows: repeat(11, 7vh);
 }
+
+header>nav>ul{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#Affichage {
+  display: flex;
+  justify-content: space-between;
+}
