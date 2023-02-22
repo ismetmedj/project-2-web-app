@@ -212,7 +212,11 @@ header>nav>ul{
     overflow-y: scroll;
     overflow-x: hidden;
 }
-
+ #afficheEvent {
+  /* display: none; */
+  position: absolute;
+  /* margin: 50vh 50vw; */
+ }
 /* #Affichage {
     display: flex;
     justify-content: space-between;

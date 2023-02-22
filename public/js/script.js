@@ -170,26 +170,41 @@ async function listEvent(){
 }
 
 async function printEvent(oneEvent) {
-  const printDiv= document.querySelector('#printEvent');
-  printDiv.innerHTML='';
-  document.querySelector('#editDiv').innerHTML= "";
-  const titleElem= document.createElement('h2');
+  if(document.getElementById('afficheEvent')){
+    closePop();
+  }
+  const clone= document.querySelector('#templateEdit').content.cloneNode(true);
+  const div = document.getElementById(oneEvent._id);
+  div.parentNode.append(clone);
+  // printDiv.innerHTML='';
+  // document.querySelector('#editDiv').innerHTML= "";
+  const titleElem= document.getElementById('h2edit');
   titleElem.textContent= oneEvent.title;
+
+  const closeBtn= document.getElementById('closeedit');
+  closeBtn.textContent= 'X';
+  closeBtn.addEventListener('click', (event) => closePop());
+
   const days= ['Monday', 'Thuesday', 'Wednasday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  const contentElem= document.createElement('div');
+  const contentElem= document.getElementById('contentEdit');
   contentElem.textContent= oneEvent.content+' at '+oneEvent.hour+"o'clock on "+days[oneEvent.day];
-  printDiv.append(titleElem, contentElem);
-  printDiv.parentNode.style.backgroundColor= oneEvent.color;
+  // printDiv.append(titleElem, contentElem);
+  document.getElementById('afficheEvent').style.backgroundColor= oneEvent.color;
+  // printDiv.parentNode.style.display= "block";
   if(authRight){
     const delBtn= document.createElement('button');
     delBtn.textContent= "Delete";
     delBtn.addEventListener('click', (event) => deleteEvent(oneEvent));
     const ediBtn= document.createElement('button');
     ediBtn.textContent= "Edit";
-    ediBtn.addEventListener('click', (event) => editForm(oneEvent));
-    printDiv.append(delBtn);
+    contentElem.append(delBtn);
     document.getElementById('editDiv').append(ediBtn);
+    ediBtn.addEventListener('click', (event) => editForm(oneEvent));
   }
+}
+
+function closePop(){
+  document.getElementById('afficheEvent').remove();
 }
 
 async function editForm(oneEvent) {
@@ -197,39 +212,41 @@ async function editForm(oneEvent) {
   .querySelector("#createEvent")
   .content.cloneNode(true);
   // console.log()
-  document.getElementById('editDiv').innerHTML= ''
+  document.getElementById('editDiv').innerHTML= '';
   document.getElementById('editDiv').append(clone);
   // console.log(document.querySelector('#newEvent>#title'));
-  document.querySelector('#newEvent>#title').setAttribute('value', oneEvent.title);
-  document.querySelector('#newEvent>#content').setAttribute('value', oneEvent.content);
-  document.querySelector(`#newEvent>#hour`).value= oneEvent.hour;
-  document.querySelector(`#newEvent>#day`).value= oneEvent.day;
-  document.querySelector('#newEvent>#color').value= oneEvent.color;
-  document.querySelector('#addAnEvent').textContent= "Update";
-  document.querySelector('#addAnEvent').addEventListener('click', (event) => editEvent(oneEvent));
+  document.querySelector('#editDiv>#newEvent>#title').setAttribute('value', oneEvent.title);
+  document.querySelector('#editDiv>#newEvent>#content').setAttribute('value', oneEvent.content);
+  document.querySelector(`#editDiv>#newEvent>#hour`).value= oneEvent.hour;
+  document.querySelector(`#editDiv>#newEvent>#day`).value= oneEvent.day;
+  document.querySelector('#editDiv>#newEvent>#color').value= oneEvent.color;
+  const btn= document.querySelector('#editDiv>#addAnEvent')
+  btn.setAttribute('id', 'editAnEvent');
+  btn.textContent= "Update";
+  btn.addEventListener('click', (event) => editEvent(oneEvent));
   // editForm(oneEvent);
 }
 async function editEvent(oneEvent){
   const updatedEvent= {
-    title: document.querySelector('#newEvent>#title').value,
-    content: document.querySelector('#newEvent>#content').value,
-    hour: document.querySelector(`#newEvent>#hour`).value,
-    day: document.querySelector(`#newEvent>#day`).value,
-    color: document.querySelector('#newEvent>#color').value,
+    title: document.querySelector('#editDiv>#newEvent>#title').value,
+    content: document.querySelector('#editDiv>#newEvent>#content').value,
+    hour: document.querySelector(`#editDiv>#newEvent>#hour`).value,
+    day: document.querySelector(`#editDiv>#newEvent>#day`).value,
+    color: document.querySelector('#editDiv>#newEvent>#color').value,
     timeTable: id,
   }
   // console.log('ok');
   await myAPI.patch(`timetable/${id}/event/${oneEvent._id}`, updatedEvent);
   // console.log('ok');
   await listEvent();
-  const Div= document.querySelector('#printEvent');
-  const Divparent= Div.parentNode;
-  Divparent.innerHTML='';
-  const editdiv= document.createElement('div');
-  editdiv.setAttribute('id', 'editDiv')
-  const printdiv= document.createElement('div');
-  printdiv.setAttribute('id', 'printEvent')
-  Divparent.append(printdiv, editdiv);
+  // const Div= document.querySelector('#printEvent');
+  // const Divparent= Div.parentNode;
+  // Divparent.innerHTML='';
+  // const editdiv= document.createElement('div');
+  // editdiv.setAttribute('id', 'editDiv')
+  // const printdiv= document.createElement('div');
+  // printdiv.setAttribute('id', 'printEvent')
+  // Divparent.append(printdiv, editdiv);
   // await editForm(oneEvent);
 }
 async function deleteEvent(event) {
