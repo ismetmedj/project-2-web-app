@@ -1,5 +1,6 @@
 <h1>{{TT.title}}</h1>
 <div id="divBtn"></div>
+<div id="list"><ul id="ullist"></ul></div>
 <section id="grid"></section>
 
 <template id="createEvent">
@@ -20,17 +21,15 @@
       <option value="15">15</option>
       <option value="16">16</option>
       <option value="17">17</option>
-      <option value="18">18</option>
     </select>
     <select name="day" id="day">
-      <option value="Monday">Monday</option>
-      <option value="Thuesday">Thuesday</option>
-      <option value="Wednesday">Wednesday</option>
-      <option value="Thursday">Thursday</option>
-      <option value="Friday">Friday</option>
-      <option value="Saturday">Saturday</option>
-      <option value="Sunday">Sunday</option>
+      <option value="0">Monday</option>
+      <option value="1">Thuesday</option>
+      <option value="2">Wednesday</option>
+      <option value="3">Thursday</option>
+      <option value="4">Friday</option>
+      <option value="5">Saturday</option>
+      <option value="6">Sunday</option>
     </select>
   </form>
     <button id="addAnEvent">Create</button>
-</template>
