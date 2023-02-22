@@ -1,5 +1,5 @@
 body {
-    padding: 50px;
+    /* padding: 50px; */
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
 }
 
@@ -7,9 +7,6 @@ a {
     color: #00b7ff;
 }
 
-h1 {
-    color: 15px;
-}
 #timetable {
     border: 1px solid black;
     display: flex;
@@ -27,32 +24,136 @@ h1 {
 /************************* LOGIN / INDEX *************************/
 
 .main-login-signup {
-    height: 25rem;
+    height: 70vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    margin-top: 5rem;
 }
 
+.main-login-signup h2 {
+    margin-top: 3rem;
+    font-size: 40px;
+}
+
+.main-login-signup input {
+    height: 3rem;
+    width: 17rem;
+}
+
+.main-login-signup section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30rem;
+    padding-bottom: 5rem;
+}
 .main-title {
-    font-size: 50px;
+    font-size: 100px;
     text-align: center;
 }
 
 .form-login-signup {
-    height: 10rem;
-    width: 20rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20rem;
+    width: 30rem;
     padding-top: 2rem;
 }
 
 .form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
     height: 10rem;
+    width: 30rem;
+}
+
+.form input {
+    border-radius: 10px; 
+    font-size: 20px;
     width: 20rem;
 }
+
 .login-title {
     width: 100wh;
 }
+    
+.bn54 {
+    position: relative;
+    outline: none;
+    text-decoration: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    text-transform: uppercase;
+    height: 45px;
+    width: 130px;
+    opacity: 1;
+    background-color: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.6);
+    margin: 2rem auto;
+  }
+  
+.bn54 .bn54span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: #000000;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.7px;
+}
+
+.bn54:hover {
+  animation: bn54rotate 0.7s ease-in-out both;
+}
+
+.bn54:hover .bn54span {
+  animation: bn54storm 0.7s ease-in-out both;
+  animation-delay: 0.06s;
+}
+
+@keyframes bn54rotate {
+  0% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+  25% {
+    transform: rotate(3deg) translate3d(0, 0, 0);
+  }
+  50% {
+    transform: rotate(-3deg) translate3d(0, 0, 0);
+  }
+  75% {
+    transform: rotate(1deg) translate3d(0, 0, 0);
+  }
+  100% {
+    transform: rotate(0deg) translate3d(0, 0, 0);
+  }
+}
+
+@keyframes bn54storm {
+  0% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+  25% {
+    transform: translate3d(4px, 0, 0) translateZ(0);
+  }
+  50% {
+    transform: translate3d(-3px, 0, 0) translateZ(0);
+  }
+  75% {
+    transform: translate3d(2px, 0, 0) translateZ(0);
+  }
+  100% {
+    transform: translate3d(0, 0, 0) translateZ(0);
+  }
+}
 /**********************************CSS FOR THE GRID******************************/
+
 * {
     margin: 0;
     padding: 0;
@@ -74,8 +175,8 @@ h1 {
 
 #grid {
     display: grid;
-    margin-top: 4rem;
-    padding: 2rem;
+    /* margin-top: 4rem; */
+    padding: 1rem 2rem;
     grid-template-columns: repeat(8, 11vw);
     grid-template-rows: repeat(11, 7vh);
 }
@@ -94,3 +195,25 @@ header>nav>ul{
   display: flex;
   justify-content: space-between;
 }
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.event.contained::-webkit-scrollbar {
+    display: none;
+   }
+   
+   /* Hide scrollbar for IE, Edge and Firefox */
+.event.contained{
+    overflow-y: hidden;
+    background-color: blueviolet;
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+.event{
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+/* #Affichage {
+    display: flex;
+    justify-content: space-between;
+} */

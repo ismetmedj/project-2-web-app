@@ -1,11 +1,14 @@
 <h1>{{TT.title}}</h1>
-<div id="divBtn"></div>
 <div id="Affichage">
-<div id="list"><ul id="ullist"></ul></div>
-<div id="printEvent">
+  <div id="divBtn"></div>
+{{!-- <div id="list"><ul id="ullist"></ul></div> --}}
+  <div>
+    <div id="printEvent">
+    </div>
+    <div id="editDiv"></div>
+    </div>
+  </div>
 </div>
-</div>
-<div id="list"><ul id="ullist"></ul></div>
 <section id="grid"></section>
 
 <template id="createEvent">
@@ -36,5 +39,6 @@
       <option value="5">Saturday</option>
       <option value="6">Sunday</option>
     </select>
+    <input type="color" name="color" id="color" value="#FFFFFF">
   </form>
     <button id="addAnEvent">Create</button>
