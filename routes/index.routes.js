@@ -10,6 +10,12 @@ router.get('/', isLoggedOut, (req, res, next) => {
     res.render('./auth/login')
 })
 
+router.get('/user', isLoggedIn, async (req, res, next) => {
+    const user = await User.findOne({_id: req.session.currentUser._id});
+    console.log(user);
+    res.status(200).json(user);
+})
+
 router.get('/users', async (req, res, next) => {
     const allUsers= await User.find();
     res.render('./users', {allUsers})

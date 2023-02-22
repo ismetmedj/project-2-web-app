@@ -84,3 +84,13 @@ header > nav > ul {
     display: flex;
     justify-content: space-evenly;
 }
+
+header>nav>ul{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#Affichage {
+  display: flex;
+  justify-content: space-between;
+}

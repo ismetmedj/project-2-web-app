@@ -6,6 +6,11 @@ document.querySelector("#create").addEventListener("click", (event) => {
       document.querySelector("#divCreate").append(clone);
     });
 fetchAll();
+// isAdmin();
+// async function isAdmin() {
+//   const user= await myAPI.get('/user');
+//   console.log(user.data._id);
+// }
 
 // document.querySelector('#fetch').addEventListener('click', (event) => fetchAll());
 
@@ -32,6 +37,52 @@ async function editTT(tt) {
         document.getElementById(tt._id).innerHTML= "";
         document.getElementById(tt._id).append(clone);
         const editForm= document.querySelector('#editForm');
+        
+        console.log(tt.participants);
+        console.log(tt.editors);
+        all.data.forEach((el) => {
+            console.log(el._id)
+            const array= ['none', 'participant', 'editor'];
+            const fieldset= document.createElement('fieldset');
+            const legend= document.createElement('legend');
+            array.forEach((tag) => {
+                legend.textContent= el.username;
+                const input= document.createElement('input');
+                input.setAttribute('type', 'radio');
+                input.setAttribute('name', el.username);
+                input.setAttribute('value', tag);
+                if(tag==='participant'){
+                    for(const user of tt.participants){
+                        if(user._id===el._id){
+                            input.checked= true;
+                            // console.log('part');
+                        }
+                    }
+                }
+                if(tag==='editor'){
+                    for(const user of tt.editors){
+                        if(user._id===el._id){
+                        input.checked= true;
+                        // console.log('ed');
+                        }
+                    }
+                }
+                input.classList.add('updateShare');
+                const label= document.createElement('label');
+                label.setAttribute('for', el.username);
+                // label.append(input);
+                const divInp= document.createElement('div');
+                divInp.append(input, label);
+                label.textContent= tag;
+                fieldset.append(legend, divInp);
+            })
+            // label.textContent= el.username;
+            // for(const user of tt.participants){
+            //     if(user._id===el._id){
+            //         input.checked= true;
+            //     }
+            // }
+            editForm.append(fieldset);
         // console.log(tt.participants);
         all.data.forEach((el) => {
             const input= document.createElement('input');
@@ -67,6 +118,10 @@ async function fetchAll() {
     ul.classList.add('ulList');
     try {
         const allTT= await myAPI.get('/profil/timetables')
+        allTT.data.forEach((tt) => {
+            // console.log(tt.admin);
+            createLi(tt, ul, false)});
+
         allTT.data.forEach((tt) => createLi(tt, ul, false));
         document.querySelector('#list').append(ul);
         fetchShare();
@@ -89,6 +144,18 @@ function createLi(tt, ul, shared){
         h6.textContent= "List of Participants";
         // console.log(tt);
         whithUl.append(h6);
+        // tt.participants.forEach((part) => {
+        //     const withLi= document.createElement('li');
+        //     withLi.textContent= part.username;
+        //     const deletePart= document.createElement('button');
+            // deletePart.classList.add('deletePart');
+            // deletePart.textContent= "Unshare";
+            // deletePart.addEventListener('click', (event) => unshareTT(tt));
+        //     whithUl.append(withLi);
+        // })
+        delBtn.addEventListener('click', (event) => deleteOne(tt));
+        li.append(delBtn);
+
         tt.participants.forEach((part) => {
             const withLi= document.createElement('li');
             withLi.textContent= part.username;
@@ -134,6 +201,18 @@ async function deleteOne(tt) {
     console.log('click')
     const title= document.querySelector('#edittitle').value;
     const partic= [];
+    const edito= [];
+    document.querySelectorAll('.updateShare').forEach((el) => {
+        if(el.checked){
+            if(el.value==='participant'){
+                partic.push(el.name);
+            }
+            if(el.value==='editor'){
+                edito.push(el.name);
+            }
+        }
+    })
+    const newTT= { title , partic, edito};
     document.querySelectorAll('.updateShare').forEach((el) => {
         if(el.checked){
             partic.push(el.name);
