@@ -1,13 +1,8 @@
+<h1 class="main-title animate__animated animate__fadeInDown">Welcome {{user.username}}!</h1>
 <main>
 
-  <h1 class="main-title animate__animated animate__fadeInDown">Welcome {{user.username}}!</h1>
 
   <div id="main-profile">
-    <div id="divCreate">
-      {{#if error}}
-      <p>{{error}}</p>
-      {{/if}}
-    </div>
 
     {{!-- <input type="submit" class="button-28" id="create" value="Create a TimeTable"> --}}
 
@@ -40,3 +35,6 @@
     </template>
     <div id="list"></div>
 </main>
+{{#if error}}
+<p>{{error}}</p>
+{{/if}}

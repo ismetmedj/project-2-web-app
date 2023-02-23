@@ -3,7 +3,7 @@ const createBtn= document.createElement('button');
 createBtn.classList.add('button-28');
 createBtn.setAttribute('id', 'create');
 createBtn.textContent= "Create a TimeTable"
-document.querySelector('main').append(createBtn);
+document.querySelector('body').append(createBtn);
 document.querySelector("#create").addEventListener("click", divCreat);
 // document.querySelector("#create").addEventListener("click", divCreat);
 fetchAll();
@@ -12,9 +12,10 @@ function divCreat(event){
     if(document.getElementById('editDiv')){
         document.getElementById("editDiv").remove();
     }
-    document.querySelector("#divCreate").innerHTML = "";
+    // document.querySelector("#divCreate").style.visibility= "visible";
+    // document.querySelector("#divCreate").innerHTML = "";
     const clone = document.querySelector("#createTT").content.cloneNode(true);
-    document.querySelector("#divCreate").append(clone);
+    document.querySelector("body").append(clone);
     // document.querySelector('#create').setAttribute('form', 'createTimeTable');
 }
 
@@ -32,12 +33,13 @@ async function fetchShare() {
 async function editTT(tt) {
     try {
         if(document.getElementById("createTimeTable")){
+            // document.querySelector("#divCreate").style.visibility= "hidden";
             document.getElementById("createTimeTable").remove();
             const createBtn= document.createElement('button');
             createBtn.classList.add('button-28');
             createBtn.setAttribute('id', 'create');
             createBtn.textContent= "Create a TimeTable"
-            document.querySelector('main').append(createBtn);
+            document.querySelector('body').append(createBtn);
             document.querySelector("#create").addEventListener("click", divCreat);
         }
         if(document.getElementById('editDiv')){
