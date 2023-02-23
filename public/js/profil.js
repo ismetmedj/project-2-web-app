@@ -20,7 +20,7 @@ async function fetchShare() {
 
 async function editTT(tt) {
     try {
-        const editedTT= await myAPI.get(`/profil/${tt._id}`);
+        const edTT= await myAPI.get(`/profil/${tt._id}`);
         const all=await myAPI.post('/users');
         // console.log(all);    
         const clone = document.querySelector("#editTT").content.cloneNode(true);
@@ -122,10 +122,13 @@ async function fetchAll() {
 
 function createLi(tt, ul, shared){
     const li= document.createElement('li');
+    const button = document.createElement('button');
+    button.classList.add('button-28');
     const a= document.createElement('a');
     a.href = "/timetable/"+tt._id;
     a.textContent=  tt.title;
-    li.append(a);
+    li.append(button);
+    button.append(a)
     // if(!shared){
         // const whithUl= document.createElement('ul');
         // const h6= document.createElement('h6');
@@ -161,7 +164,6 @@ function createLi(tt, ul, shared){
             const delBtn = document.createElement('button');
             delBtn.textContent = 'Delete';
             delBtn.addEventListener('click', (event) => deleteOne(tt));
-            li.append(delBtn);
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
             const divEdit= document.createElement('div');
@@ -169,8 +171,8 @@ function createLi(tt, ul, shared){
             divEdit.setAttribute('id', tt._id);
             divEdit.append(ediBtn);
             ediBtn.addEventListener('click', (event) => editTT(tt));
-            
-            
+        
+            divEdit.append(delBtn);
             li.append(divEdit);
         }
         ul.append(li)

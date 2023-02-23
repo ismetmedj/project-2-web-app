@@ -1,9 +1,13 @@
 <main>
+  
   <h1 class="main-title animate__animated animate__fadeInDown">Welcome {{user.username}}!</h1>
+  
   <div id="main-profile">
     <div id="divCreate">
-    <button id="create">Create a Time Table</button>
   </div>
+  
+  <button class="button-28" id="create">Create a TimeTable</button>
+  
   <template id="createTT">
     <form id="createTimeTable" action="/profil" method="post">
       <label for="title">Title: </label>
@@ -19,6 +23,7 @@
       <button>Create</button>
     </form>
   </template>
+  
   <template id="editTT">
     <form id="editForm">
       <label for="edittitle">Title: </label>
