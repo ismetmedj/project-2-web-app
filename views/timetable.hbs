@@ -1,17 +1,21 @@
 <h1 data-id="{{TT._id}}">{{TT.title}}</h1>
+<section id="grid"></section>
 <div id="Affichage">
   <div id="divBtn"></div>
-{{!-- <div id="list"><ul id="ullist"></ul></div> --}}
+  {{!-- <div id="list">
+    <ul id="ullist"></ul>
+  </div> --}}
 </div>
-<section id="grid"></section>
 <template id="templateEdit">
   <div id="afficheEvent">
     <div id="printEvent">
-      <div id="titleclose"><h2 id="h2edit"></h2><button id="closeedit"></button></div>
+      <div id="titleclose">
+        <h2 id="h2edit"></h2><button id="closeedit"></button>
+      </div>
     </div>
     <div id="contentEdit"></div>
     <div id="editDiv"></div>
-    </div>
+  </div>
   </div>
 </template>
 
@@ -45,5 +49,5 @@
     </select>
     <input type="color" name="color" id="color" value="#FFFFFF">
   </form>
-    <button id="addAnEvent">Create</button>
+  <button id="addAnEvent">Create</button>
 </template>
