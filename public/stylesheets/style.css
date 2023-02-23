@@ -4,6 +4,9 @@ body {
     background-repeat: no-repeat;
     background-size: cover;
     color: white;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
 }
 
 a {
@@ -30,6 +33,8 @@ a {
 h1 {
     text-align: center;
     font-size: 60px;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
 }
 
 h2 {
@@ -436,7 +441,8 @@ h2 {
 /********************************** PROFILE ******************************/
 
 main {
-    height: 80vh;
+    height: 40vh;
+    margin-top: 5vh;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -453,14 +459,15 @@ main {
 }
 
 #list {
-  width: 50vw;
-  height: 20vh;
+  width: 80vw;
+  /* height: 70vh; */
 }
 
 #list ul {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
+  gap: 3vw;
 }
 
 #list li {
@@ -468,15 +475,17 @@ main {
 }
 
 .ulList {
-  height: 20vh;
+  height: 45vh;
   display: flex;
   justify-content: space-between;
-  flex-wrap: wrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  /* flex-wrap: wrap; */
 }
 
 .ulList li {
-  height: 20vh;
-  width: 20vw;
+  /* height: 20vh; */
+  /* width: 20vw; */
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -486,7 +495,7 @@ main {
 .ulList li a button {
   display: flex;
   justify-content: center;
-  font-size: 40px;
+  font-size: 20px;
 }
 
 .divEdit {
@@ -496,7 +505,7 @@ main {
 }
 
 .divEdit button {
-  width: 5vw;
+  /* width: 5vw; */
   text-align: center;
 }
 
@@ -584,18 +593,42 @@ main {
     margin: 0 0.5rem;
     border-bottom: 2px solid white;
 }
+#divCreate{
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
+    margin-bottom: 0.2rem;
+    overflow-y: scroll;
+    height: 30vh;
+    visibility: hidden;
+}
 
 #editDiv {
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    flex-direction: column;
+    /* justify-content: space-evenly; */
     margin-bottom: 0.2rem;
+    overflow-y: scroll;
+    height: 20vh;
 }
 
 #editAnEvent {
     margin: auto;
 }
 
+#createTimeTable{
+    width: 30vw;
+    height: 20vh;
+    display: flex;
+    /* margin-bottom: 25vh; */
+    position: relative;
+    top: -20vh;
+    /* background-color: #101f60; */
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
 .days,
 .hours {
     text-align: center;
@@ -612,7 +645,7 @@ nav > ul {
     align-items: center;
     justify-content: space-around;
     list-style: none;
-    height: 5rem;
+    height: 3rem;
     width: 100vw;
 }
 
