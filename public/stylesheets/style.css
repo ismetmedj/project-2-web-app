@@ -5,6 +5,7 @@ body {
     background-size: cover;
     color: white;
     display: flex;
+    width: 99vw;
     align-items: center;
     flex-direction: column;
 }
@@ -534,7 +535,7 @@ main {
     display: grid;
     /* margin-top: 4rem; */
     padding: 1rem;
-    margin-left: 3.5rem;
+    margin-left: 2.5vw;
     grid-template-columns: repeat(8, 11vw);
     grid-template-rows: repeat(11, 7vh);
 }
@@ -609,6 +610,10 @@ main {
     height: 30vh;
     visibility: hidden;
 }
+#divBtn{
+    display: flex;
+}
+
 
 #editDiv {
     display: flex;
