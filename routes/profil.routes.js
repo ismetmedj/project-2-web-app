@@ -4,7 +4,7 @@ const User = require('../models/User.model')
 
 const express = require('express')
 const router = express.Router()
-
+let casertarien= false;
 router.get('/', isLoggedIn, async (req, res, next) => {
     const user = req.session.currentUser
     // console.log('   '+user);
@@ -13,7 +13,12 @@ router.get('/', isLoggedIn, async (req, res, next) => {
         const allUsers = await User.find({
             username: { $not: RegExp(user.username) },
         })
-        res.render('profil', { user, allUsers, allTT, script: ['profil'] })
+        if(casertarien){
+            casertarien= false;
+            res.render('profil', { user, allUsers, allTT, script: ['profil'], error: 'a timetable must have a title'  });
+        }else {
+            res.render('profil', { user, allUsers, allTT, script: ['profil'] });
+        }
     } catch (error) {
         next(error)
     }
@@ -21,26 +26,45 @@ router.get('/', isLoggedIn, async (req, res, next) => {
 
 router.post('/', isLoggedIn, async (req, res, next) => {
     try {
+        // preventDefault();
         // console.log(req.body);
         // res.sendStatus(200);
         // return;
         const { title, ...users } = req.body
-        const partic = []
-        const editors = []
-        for (key in users) {
-            if (users[key] === 'participant') {
-                const userShare = await User.findOne({ username: key })
-                if (userShare) {
-                    partic.push(userShare._id)
-                }
-            }
-            if (users[key] === 'editor') {
-                const userShare = await User.findOne({ username: key })
-                if (userShare) {
-                    editors.push(userShare._id)
-                }
-            }
+        if(!title){
+            res.redirect('/profil');
+            casertarien= true;
+            return
         }
+            const partic = []
+            const editors = []
+            for (key in users) {
+                if (users[key] === 'participant') {
+                    const userShare = await User.findOne({ username: key })
+                    if (userShare) {
+                        partic.push(userShare._id)
+                    }
+                }
+                if (users[key] === 'editor') {
+                    const userShare = await User.findOne({ username: key })
+                    if (userShare) {
+                        editors.push(userShare._id)
+                    }
+                }
+            }
+            const userId = await User.findOne({
+                username: req.session.currentUser.username,
+            })
+            const createTT = {
+                title: req.body.title,
+                admin: userId._id,
+                participants: partic,
+                editors: editors,
+            }
+            const newTimeTable = await TimeTable.create(createTT)
+    
+            res.redirect(`/timetable/${newTimeTable._id}`)
+
         // console.log(partic);
 
         // console.log(req.body);
@@ -51,19 +75,7 @@ router.post('/', isLoggedIn, async (req, res, next) => {
         //     partic.push(userShare._id);
         //   }
         // }
-        console.log(partic)
-        const userId = await User.findOne({
-            username: req.session.currentUser.username,
-        })
-        const createTT = {
-            title: req.body.title,
-            admin: userId._id,
-            participants: partic,
-            editors: editors,
-        }
-        const newTimeTable = await TimeTable.create(createTT)
-
-        res.redirect(`/timetable/${newTimeTable._id}`)
+        // console.log(partic)
     } catch (error) {
         next(error)
     }
@@ -97,7 +109,7 @@ router.patch('/:id', isLoggedIn, async (req, res, next) => {
     }
 })
 router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
-    console.log(req.session.currentUser._id)
+    // console.log(req.session.currentUser._id)
     const allShare = await TimeTable.find({
         $or: [
             { participants: req.session.currentUser._id },
@@ -106,7 +118,7 @@ router.get('/sharedtimetables', isLoggedIn, async (req, res, next) => {
     })
     // console.log('hey '+allShare);
     // const allShare= await TimeTable.find({participants: req.session.currentUser._id});
-    console.log('hey ' + allShare)
+    // console.log('hey ' + allShare)
     res.status(200).json(allShare)
 })
 

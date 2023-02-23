@@ -5,7 +5,7 @@ createBtn.setAttribute('id', 'create');
 createBtn.textContent= "Create a TimeTable"
 document.querySelector('main').append(createBtn);
 document.querySelector("#create").addEventListener("click", divCreat);
-document.querySelector("#create").addEventListener("click", divCreat);
+// document.querySelector("#create").addEventListener("click", divCreat);
 fetchAll();
 function divCreat(event){
     document.querySelector('#create').remove();

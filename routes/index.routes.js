@@ -7,7 +7,7 @@ const isLoggedOut = require('../middleware/isLoggedOut')
 
 /* GET home page */
 router.get('/', isLoggedOut, (req, res, next) => {
-    res.render('./auth/login')
+    res.render('./auth/login', {script: ['auth']})
 })
 
 router.get('/user', isLoggedIn, async (req, res, next) => {

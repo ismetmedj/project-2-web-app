@@ -98,6 +98,7 @@ h2 {
     color: white;
     /* border: 0.5px solid white; */
     border: none;
+    box-shadow: 0 0 5px transparent;
 }
 
 .form input:focus {
@@ -105,6 +106,28 @@ h2 {
     /* border: 2px solid rgb(255, 255, 255); */
     border: none;
     box-shadow: 0 0 5px #ffffff;
+}
+.form input.red{
+    box-shadow: inset 0 0 4px #ffffff;
+    animation: pulset 1s infinite;
+}
+
+@keyframes pulset {
+    0% {
+        box-shadow: inset 0 0 2px #ffffff;
+    }
+    25% {
+        box-shadow: inset 0 0 4px #ffffff;
+    }
+    50% {
+        box-shadow: inset 0 0 2px #ffffff;
+    }
+    75% {
+        box-shadow: inset 0 0 4px #ffffff;
+    }
+    100%{
+        box-shadow: inset 0 0 2px #ffffff;
+    }
 }
 
 .login-title {

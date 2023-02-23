@@ -4,6 +4,9 @@
 
   <div id="main-profile">
     <div id="divCreate">
+      {{#if error}}
+      <p>{{error}}</p>
+      {{/if}}
     </div>
 
     {{!-- <input type="submit" class="button-28" id="create" value="Create a TimeTable"> --}}

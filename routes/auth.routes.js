@@ -17,7 +17,7 @@ const isLoggedIn = require('../middleware/isLoggedIn')
 
 // GET /auth/signup
 router.get('/signup', isLoggedOut, (req, res) => {
-    res.render('auth/signup')
+    res.render('auth/signup', {script: ['auth']})
 })
 
 // POST /auth/signup
@@ -29,6 +29,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
         res.status(400).render('auth/signup', {
             errorMessage:
                 'All fields are mandatory. Please provide your username, email and password.',
+            script: ['auth']
         })
 
         return
@@ -75,6 +76,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
                 res.status(500).render('auth/signup', {
                     errorMessage:
                         'Username and email need to be unique. Provide a valid username or email.',
+                    script: ['auth']
                 })
             } else {
                 next(error)
@@ -84,7 +86,7 @@ router.post('/signup', isLoggedOut, (req, res) => {
 
 // GET /auth/login
 router.get('/login', isLoggedOut, (req, res) => {
-    res.render('auth/login')
+    res.render('auth/login', {script: ['auth']})
 })
 
 // POST /auth/login
@@ -96,6 +98,7 @@ router.post('/login', isLoggedOut, (req, res, next) => {
         res.status(400).render('auth/login', {
             errorMessage:
                 'All fields are mandatory. Please provide username, email and password.',
+            script: ['auth']
         })
 
         return
@@ -114,8 +117,9 @@ router.post('/login', isLoggedOut, (req, res, next) => {
         .then((user) => {
             // If the user isn't found, send an error message that user provided wrong credentials
             if (!user) {
-                res.status(400).render('auth/signup', {
+                res.status(400).render('auth/login', {
                     errorMessage: 'Please create an account.',
+                    script: ['auth']
                 })
                 return
             }
@@ -127,6 +131,7 @@ router.post('/login', isLoggedOut, (req, res, next) => {
                     if (!isSamePassword) {
                         res.status(400).render('auth/login', {
                             errorMessage: 'Wrong credentials.',
+                            script: ['auth']
                         })
                         return
                     }
@@ -151,7 +156,7 @@ router.get('/logout', isLoggedIn, (req, res) => {
             return
         }
 
-        res.redirect('/auth/login')
+        res.redirect('/auth/login', {script: ['auth']})
     })
 })
 
