@@ -6,11 +6,10 @@
     <div id="divCreate">
     </div>
 
-    <button class="button-28" id="create">Create a TimeTable</button>
+    {{!-- <input type="submit" class="button-28" id="create" value="Create a TimeTable"> --}}
 
     <template id="createTT">
       <form id="createTimeTable" action="/profil" method="post">
-        <button class="button-28">Create</button>
         <label for="title">Title: </label>
         <input type="text" name="title" id="title" />
         {{#each allUsers}}
@@ -23,6 +22,7 @@
           <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="editor">Editor</label>
         </fieldset>
         {{/each}}
+        <button class="button-28">Create</button>
       </form>
     </template>
 

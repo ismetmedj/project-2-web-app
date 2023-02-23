@@ -1,12 +1,22 @@
 import myAPI from "./service.js";
-
-document.querySelector("#create").addEventListener("click", (event) => {
-      const clone = document.querySelector("#createTT").content.cloneNode(true);
-      document.querySelector('#create').style.visibility= "hidden";
-      document.querySelector("#divCreate").innerHTML = "";
-      document.querySelector("#divCreate").append(clone);
-    });
+const createBtn= document.createElement('button');
+createBtn.classList.add('button-28');
+createBtn.setAttribute('id', 'create');
+createBtn.textContent= "Create a TimeTable"
+document.querySelector('main').append(createBtn);
+document.querySelector("#create").addEventListener("click", divCreat);
+document.querySelector("#create").addEventListener("click", divCreat);
 fetchAll();
+function divCreat(event){
+    document.querySelector('#create').remove();
+    if(document.getElementById('editDiv')){
+        document.getElementById("editDiv").remove();
+    }
+    document.querySelector("#divCreate").innerHTML = "";
+    const clone = document.querySelector("#createTT").content.cloneNode(true);
+    document.querySelector("#divCreate").append(clone);
+    // document.querySelector('#create').setAttribute('form', 'createTimeTable');
+}
 
 async function fetchShare() {
     try {
@@ -23,7 +33,12 @@ async function editTT(tt) {
     try {
         if(document.getElementById("createTimeTable")){
             document.getElementById("createTimeTable").remove();
-            document.querySelector('#create').style.visibility= "visible";
+            const createBtn= document.createElement('button');
+            createBtn.classList.add('button-28');
+            createBtn.setAttribute('id', 'create');
+            createBtn.textContent= "Create a TimeTable"
+            document.querySelector('main').append(createBtn);
+            document.querySelector("#create").addEventListener("click", divCreat);
         }
         if(document.getElementById('editDiv')){
             document.getElementById("editDiv").remove();
@@ -135,9 +150,9 @@ function createLi(tt, ul, shared){
     button.classList.add('button-28');
     const a= document.createElement('a');
     a.href = "/timetable/"+tt._id;
-    a.textContent=  tt.title;
-    li.append(button);
-    button.append(a)
+    button.textContent=  tt.title;
+    li.append(a);
+    a.append(button)
     // if(!shared){
         // const whithUl= document.createElement('ul');
         // const h6= document.createElement('h6');
