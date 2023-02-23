@@ -2,7 +2,8 @@ const mongoose = require('mongoose')
 const bcrypt = require('bcrypt')
 
 const MONGO_URI =
-    process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/Project-2'
+    process.env.MONGODB_URI ||
+    'mongodb+srv://lekix:H8232tRAA4L6fNj@timetables.n1szt8g.mongodb.net/?retryWrites=true&w=majority'
 
 const users = require('../seeds/user.json')
 const events = require('../seeds/event.json')

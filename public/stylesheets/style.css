@@ -251,6 +251,7 @@ main {
     overflow-x: hidden; 
 }
 
+
 /*********************** NAV BAR ***************************/
 
 nav > ul {
@@ -273,3 +274,14 @@ nav > ul > li > a:hover {
   animation: headShake; /* referring directly to the animation's @keyframe declaration */
   animation-duration: 2s; /* don't forget to set a duration! */
 }
+
+ #afficheEvent {
+  /* display: none; */
+  position: absolute;
+  /* margin: 50vh 50vw; */
+ }
+/* #Affichage {
+    display: flex;
+    justify-content: space-between;
+} */
+
