@@ -187,9 +187,11 @@ function createLi(tt, ul, shared){
         if(!shared){
             const delBtn = document.createElement('button');
             delBtn.textContent = 'Delete';
+            delBtn.classList.add("button-81")
             delBtn.addEventListener('click', (event) => deleteOne(tt));
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
+            ediBtn.classList.add("button-80")
             const divEdit= document.createElement('div');
             divEdit.classList.add('divEdit');
             divEdit.setAttribute('id', tt._id);
