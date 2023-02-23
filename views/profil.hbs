@@ -1,35 +1,39 @@
 <main>
-  
+
   <h1 class="main-title animate__animated animate__fadeInDown">Welcome {{user.username}}!</h1>
-  
+
   <div id="main-profile">
     <div id="divCreate">
-  </div>
-  
-  <button class="button-28" id="create">Create a TimeTable</button>
-  
-  <template id="createTT">
-    <form id="createTimeTable" action="/profil" method="post">
-      <label for="title">Title: </label>
-      <input type="text" name="title" id="title" />
-      {{#each allUsers}}
-      <fieldset>
-        <legend>{{this.username}}</legend>
-        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="none" checked>Not Included</label>
-        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="participant">Participant</label>
-        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="editor">Editor</label>
-      </fieldset>
-      {{/each}}
-      <button>Create</button>
-    </form>
-  </template>
-  
-  <template id="editTT">
-    <form id="editForm">
-      <label for="edittitle">Title: </label>
-      <input type="text" name="edittitle" id="edittitle" />
-    </form>
-      <button id="editBtn">Edit</button>
-  </template>
-  <div id="list"></div>
+    </div>
+
+    <button class="button-28" id="create">Create a TimeTable</button>
+
+    <template id="createTT">
+      <form id="createTimeTable" action="/profil" method="post">
+        <button class="button-28">Create</button>
+        <label for="title">Title: </label>
+        <input type="text" name="title" id="title" />
+        {{#each allUsers}}
+        <fieldset>
+          <legend>{{this.username}}</legend>
+          <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="none" checked>Not
+            Included</label>
+          <label for="{{this.username}}"><input type="radio" name='{{this.username}}'
+              value="participant">Participant</label>
+          <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="editor">Editor</label>
+        </fieldset>
+        {{/each}}
+      </form>
+    </template>
+
+    <template id="editTT">
+      <div id="editDiv">
+        <form id="editForm">
+          <label for="edittitle">Title: </label>
+          <input type="text" name="edittitle" id="edittitle" />
+        </form>
+        <button id="editBtn">Edit</button>
+      </div>
+    </template>
+    <div id="list"></div>
 </main>
