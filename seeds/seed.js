@@ -23,7 +23,7 @@ mongoose
 
             await seedUsers()
             await seedTimeTables()
-            await seedEvents()
+            // await seedEvents()
             await mongoose.disconnect()
         } catch (error) {
             console.error(error)
