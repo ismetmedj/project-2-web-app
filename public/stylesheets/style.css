@@ -1,10 +1,14 @@
 body {
-    /* padding: 50px; */
     font: 14px 'Lucida Grande', Helvetica, Arial, sans-serif;
+    background-image: url("../images/layered-waves-haikei.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
 }
 
 a {
-    color: #00b7ff;
+    color: white;
+    text-decoration: none;
 }
 
 #timetable {
@@ -12,13 +16,25 @@ a {
     display: flex;
     width: 70vw;
 }
+
 .day {
     border: 1px solid black;
     width: 10vw;
 }
+
 .day > div {
     height: 50vh;
     border: 1px solid black;
+}
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+}
+
+h2 {
+  text-align: center;
+  font-size: 40px;
 }
 
 /************************* LOGIN / INDEX *************************/
@@ -30,6 +46,7 @@ a {
     justify-content: space-evenly;
     align-items: center;
     margin-top: 5rem;
+    color: white;
 }
 
 .main-login-signup h2 {
@@ -74,14 +91,32 @@ a {
 
 .form input {
     border-radius: 10px; 
-    font-size: 20px;
+    font-size: 15px;
     width: 20rem;
+    padding-left: 20%;
+    background-color: transparent;
+    color: white;
+    /* border: 0.5px solid white; */
+    border: none;
+}
+
+.form input:focus {
+  outline: none !important;
+  /* border: 2px solid rgb(255, 255, 255); */
+  border: none;
+  box-shadow: 0 0 5px #ffffff;
 }
 
 .login-title {
     width: 100wh;
 }
-    
+
+.form input::placeholder {
+  text-indent: 3rem;
+}
+
+/********************** LOGIN BUTTON ***********************/
+
 .bn54 {
     position: relative;
     outline: none;
@@ -98,7 +133,9 @@ a {
     background-color: #ffffff;
     border: 1px solid rgba(0, 0, 0, 0.6);
     margin: 2rem auto;
-  }
+    font-size: 15px;
+    letter-spacing: 2px;
+}
   
 .bn54 .bn54span {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
@@ -114,7 +151,7 @@ a {
 
 .bn54:hover .bn54span {
   animation: bn54storm 0.7s ease-in-out both;
-  animation-delay: 0.06s;
+  animation-delay: 2.0s;
 }
 
 @keyframes bn54rotate {
@@ -152,6 +189,17 @@ a {
     transform: translate3d(0, 0, 0) translateZ(0);
   }
 }
+
+/********************************** PROFILE ******************************/
+
+main {
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
 /**********************************CSS FOR THE GRID******************************/
 
 * {
@@ -181,16 +229,6 @@ a {
     grid-template-rows: repeat(11, 7vh);
 }
 
-header > nav > ul {
-    display: flex;
-    justify-content: space-evenly;
-}
-
-header>nav>ul{
-  display: flex;
-  justify-content: space-evenly;
-}
-
 #Affichage {
   display: flex;
   justify-content: space-between;
@@ -210,10 +248,28 @@ header>nav>ul{
 }
 .event{
     overflow-y: scroll;
-    overflow-x: hidden;
+    overflow-x: hidden; 
 }
 
-/* #Affichage {
-    display: flex;
-    justify-content: space-between;
-} */
+/*********************** NAV BAR ***************************/
+
+nav > ul {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  list-style: none;
+  height: 5rem;
+  width: 100vw;
+}
+
+nav > ul > li > a {
+  font-size: 40px;
+  font-weight: 900;
+}
+
+nav > ul > li > a:hover {
+  display: inline-block;
+
+  animation: headShake; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 2s; /* don't forget to set a duration! */
+}
