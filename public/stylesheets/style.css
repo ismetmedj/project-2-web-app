@@ -513,6 +513,7 @@ main {
     border: 0.5px solid white;
 }
 
+
 #grid {
     display: grid;
     /* margin-top: 4rem; */
@@ -537,6 +538,18 @@ main {
     overflow-y: hidden;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar{
+    width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 8000px;
+    background-color: #535353;
+}
+*::-webkit-scrollbar-track{
+    /* box-shadow: inset 0 0 2px 4px rgba(0, 0, 0, 0.3); */
+    background-color: whitesmoke;
+    border-radius: 8000px;
 }
 .event {
     overflow-y: scroll;
