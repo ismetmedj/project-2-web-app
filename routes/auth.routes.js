@@ -156,7 +156,7 @@ router.get('/logout', isLoggedIn, (req, res) => {
             return
         }
 
-        res.redirect('/auth/login', {script: ['auth']})
+        res.redirect('/auth/login')
     })
 })
 
