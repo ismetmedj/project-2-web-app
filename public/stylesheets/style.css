@@ -277,7 +277,7 @@ h2 {
   cursor: pointer;
   display: inline-block;
   font-family: Roobert,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   line-height: normal;
   margin: 0;
@@ -312,6 +312,127 @@ h2 {
   transform: translateY(0);
 }
 
+.button-80 {
+  background: #837676;
+  border: 1px solid black;
+  backface-visibility: hidden;
+  border-radius: .375rem;
+  border-style: solid;
+  border-width: .125rem;
+  box-sizing: border-box;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,Helvetica,sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  padding: .875rem 1.125rem;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transform: translateZ(0) scale(1);
+  transition: transform .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-80:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.button-80:not(:disabled):hover:active {
+  transform: scale(1.05) translateY(.125rem);
+}
+
+.button-80:focus {
+  outline: 0 solid transparent;
+}
+
+.button-80:focus:before {
+  content: "";
+  left: calc(-1*.375rem);
+  pointer-events: none;
+  position: absolute;
+  top: calc(-1*.375rem);
+  transition: border-radius;
+  user-select: none;
+}
+
+.button-80:focus:not(:focus-visible) {
+  outline: 0 solid transparent;
+}
+
+.button-80:focus:not(:focus-visible):before {
+  border-width: 0;
+}
+
+.button-80:not(:disabled):active {
+  transform: translateY(.125rem);
+}
+
+.button-81 {
+  background: #ca1010;
+  border: 1px solid black;
+  backface-visibility: hidden;
+  border-radius: .375rem;
+  border-style: solid;
+  border-width: .125rem;
+  box-sizing: border-box;
+  color: #212121;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Circular,Helvetica,sans-serif;
+  font-size: 1.125rem;
+  font-weight: 700;
+  letter-spacing: -.01em;
+  line-height: 1.3;
+  padding: .875rem 1.125rem;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transform: translateZ(0) scale(1);
+  transition: transform .2s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.button-81:not(:disabled):hover {
+  transform: scale(1.05);
+}
+
+.button-81:not(:disabled):hover:active {
+  transform: scale(1.05) translateY(.125rem);
+}
+
+.button-81:focus {
+  outline: 0 solid transparent;
+}
+
+.button-81:focus:before {
+  content: "";
+  left: calc(-1*.375rem);
+  pointer-events: none;
+  position: absolute;
+  top: calc(-1*.375rem);
+  transition: border-radius;
+  user-select: none;
+}
+
+.button-81:focus:not(:focus-visible) {
+  outline: 0 solid transparent;
+}
+
+.button-81:focus:not(:focus-visible):before {
+  border-width: 0;
+}
+
+.button-81:not(:disabled):active {
+  transform: translateY(.125rem);
+}
 /********************************** PROFILE ******************************/
 
 main {
@@ -350,6 +471,7 @@ main {
   height: 20vh;
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 .ulList li {
@@ -357,17 +479,27 @@ main {
   width: 20vw;
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.ulList li a button {
+  display: flex;
+  justify-content: center;
+  font-size: 40px;
 }
 
 .divEdit {
   display: flex;
   justify-content: space-evenly;
+  padding-top: 2rem;
 }
 
 .divEdit button {
   width: 5vw;
+  text-align: center;
 }
+
 /**********************************CSS FOR THE GRID******************************/
 
 * {
@@ -380,6 +512,7 @@ main {
     /* background-color: #263793; */
     border: 0.5px solid white;
 }
+
 
 #grid {
     display: grid;
@@ -405,6 +538,18 @@ main {
     overflow-y: hidden;
     -ms-overflow-style: none; /* IE and Edge */
     scrollbar-width: none; /* Firefox */
+}
+*::-webkit-scrollbar{
+    width: 5px;
+}
+*::-webkit-scrollbar-thumb {
+    border-radius: 8000px;
+    background-color: #535353;
+}
+*::-webkit-scrollbar-track{
+    /* box-shadow: inset 0 0 2px 4px rgba(0, 0, 0, 0.3); */
+    background-color: whitesmoke;
+    border-radius: 8000px;
 }
 .event {
     overflow-y: scroll;
