@@ -478,11 +478,12 @@ main {
 
 #list li {
     list-style: none;
+    margin-top: .5vh;
 }
 
 .ulList {
   height: 45vh;
-  display: flex;
+  /* display: flex; */
   justify-content: space-between;
   overflow-x: scroll;
   overflow-y: hidden;
