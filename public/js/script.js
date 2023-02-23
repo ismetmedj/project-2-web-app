@@ -190,8 +190,8 @@ async function printEvent(oneEvent) {
 
     const days = [
         'Monday',
-        'Thuesday',
-        'Wednasday',
+        'Tuesday',
+        'Wednesday',
         'Thursday',
         'Friday',
         'Saturday',
@@ -214,7 +214,7 @@ async function printEvent(oneEvent) {
         delBtn.addEventListener('click', (event) => deleteEvent(oneEvent))
         const ediBtn = document.createElement('button')
         ediBtn.textContent = 'Edit'
-        contentElem.append(delBtn)
+        document.getElementById('editDiv').append(delBtn)
         document.getElementById('editDiv').append(ediBtn)
         ediBtn.addEventListener('click', (event) => editForm(oneEvent))
     }
