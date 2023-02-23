@@ -5,24 +5,22 @@
 </style>
 
 <main class="main-login-signup">
-  <h2>Sign Up</h2>
-  <div class="form-login-signup">
-    <form action="/auth/signup" method="POST">
+    
+    <h1 class="main-title animate__animated animate__fadeInDown animate__delay-1s">TeamTables.</h1>
 
-      <label> Username
-        <input type="text" name="username" placeholder="Your username" />
-      </label>
+    <section class="title-section">
+    <h2 class="login-title">Sign Up</h2>
+    <div class="form-login-signup">
+      <form action="/auth/signup" method="POST" class="form" id="form">
+        <input type="text" name="username" placeholder="Username" />
+        <input type="password" name="password" placeholder="Password" />
 
-      <label> Password
-        <input type="password" name="password" placeholder="Your password" />
-      </label>
-
-      <button type="submit">Sign Up</button>
-
-      {{#if errorMessage}}
-        <p class="error">{{errorMessage}}</p>
-      {{/if}}
-    </form>
-    <p>Already have an account ?<a href="/auth/login"> Log in!</a></p>
-  </div>
+        {{#if errorMessage}}
+          <p class="error">{{errorMessage}}</p>
+        {{/if}}
+      </form>
+      <input type="submit" form="form" value="Sign In" class="bn54"/>
+      <p>Already have an account ?<a href="/auth/login"> Log in!</a></p>
+    </div>
+ </section>
 </main>

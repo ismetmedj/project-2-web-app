@@ -1,39 +1,30 @@
-<h1>Profil of {{user.username}}</h1>
-<div id="main">
-  <div id="divCreate">
-  <button id="create">Create a Time Table</button>
-  {{!-- </div>
-  <div id="divFetch">
-  <button id="fetch">Fecth administated Time Table</button>
+<main>
+  <h1 class="main-title animate__animated animate__fadeInDown">Welcome {{user.username}}!</h1>
+  <div id="main-profile">
+    <div id="divCreate">
+    <button id="create">Create a Time Table</button>
   </div>
-  <div id="divShare">
-    <button id="fetchShare">Fetch Time Table shared</button>
-  </div> --}}
-</div>
-<template id="createTT">
-  <form id="createTimeTable" action="/profil" method="post">
-    <label for="title">Title: </label>
-    <input type="text" name="title" id="title" />
-    {{#each allUsers}}
-    <fieldset>
-      <legend>{{this.username}}</legend>
-      <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="none" checked>Not Included</label>
-      <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="participant">Participant</label>
-      <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="editor">Editor</label>
-    </fieldset>
-    {{!-- <div>
-      <input type="checkbox" name="{{this.username}}" id="{{this.username}}">
-      <label for="{{this.username}}">{{this.username}}</label>
-    </div> --}}
-    {{/each}}
-    <button>Create</button>
-  </form>
-</template>
-<template id="editTT">
-  <form id="editForm">
-    <label for="edittitle">Title: </label>
-    <input type="text" name="edittitle" id="edittitle" />
-  </form>
-    <button id="editBtn">Edit</button>
-</template>
-<div id="list"></div>
+  <template id="createTT">
+    <form id="createTimeTable" action="/profil" method="post">
+      <label for="title">Title: </label>
+      <input type="text" name="title" id="title" />
+      {{#each allUsers}}
+      <fieldset>
+        <legend>{{this.username}}</legend>
+        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="none" checked>Not Included</label>
+        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="participant">Participant</label>
+        <label for="{{this.username}}"><input type="radio" name='{{this.username}}' value="editor">Editor</label>
+      </fieldset>
+      {{/each}}
+      <button>Create</button>
+    </form>
+  </template>
+  <template id="editTT">
+    <form id="editForm">
+      <label for="edittitle">Title: </label>
+      <input type="text" name="edittitle" id="edittitle" />
+    </form>
+      <button id="editBtn">Edit</button>
+  </template>
+  <div id="list"></div>
+</main>
