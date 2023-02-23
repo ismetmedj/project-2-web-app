@@ -123,7 +123,7 @@ async function fetchAll() {
 function createLi(tt, ul, shared){
     const li= document.createElement('li');
     const button = document.createElement('button');
-    button.classList.add('button-28');
+    button.classList.add('button-29');
     const a= document.createElement('a');
     a.href = "/timetable/"+tt._id;
     a.textContent=  tt.title;
