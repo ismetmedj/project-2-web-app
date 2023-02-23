@@ -2,6 +2,7 @@ import myAPI from "./service.js";
 
 document.querySelector("#create").addEventListener("click", (event) => {
       const clone = document.querySelector("#createTT").content.cloneNode(true);
+      document.querySelector('#create').style.visibility= "hidden";
       document.querySelector("#divCreate").innerHTML = "";
       document.querySelector("#divCreate").append(clone);
     });
@@ -20,18 +21,25 @@ async function fetchShare() {
 
 async function editTT(tt) {
     try {
+        if(document.getElementById("createTimeTable")){
+            document.getElementById("createTimeTable").remove();
+            document.querySelector('#create').style.visibility= "visible";
+        }
+        if(document.getElementById('editDiv')){
+            document.getElementById("editDiv").remove();
+        }
         const edTT= await myAPI.get(`/profil/${tt._id}`);
         const all=await myAPI.post('/users');
         // console.log(all);    
         const clone = document.querySelector("#editTT").content.cloneNode(true);
-        document.getElementById(tt._id).innerHTML= "";
-        document.getElementById(tt._id).append(clone);
+        // document.getElementById(tt._id).parentNode.innerHTML;
+        document.getElementById(tt._id).parentNode.append(clone);
         const editForm= document.querySelector('#editForm');
         
-        console.log(tt.participants);
-        console.log(tt.editors);
+        // console.log(tt.participants);
+        // console.log(tt.editors);
         all.data.forEach((el) => {
-            console.log(el._id)
+            // console.log(el._id)
             const array= ['none', 'participant', 'editor'];
             const fieldset= document.createElement('fieldset');
             const legend= document.createElement('legend');
@@ -91,9 +99,10 @@ async function editTT(tt) {
         //     const divInp= document.createElement('div');
         //     divInp.append(input, label);
         //     editForm.append(divInp);
+        document.querySelector('#edittitle').setAttribute('value', tt.title);
+        // console.log(el);
         })
         
-        document.querySelector('#edittitle').setAttribute('value', editedTT.data.title);
         document.querySelector('#editBtn').addEventListener('click', (event) => updateTT(tt));
         // document.querySelector('#editBtn').classList.add(tt._id);
         document.querySelector('#editBtn').textContent= "Update";
