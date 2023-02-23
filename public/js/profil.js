@@ -147,7 +147,7 @@ async function fetchAll() {
 function createLi(tt, ul, shared){
     const li= document.createElement('li');
     const button = document.createElement('button');
-    button.classList.add('button-28');
+    button.classList.add('button-29');
     const a= document.createElement('a');
     a.href = "/timetable/"+tt._id;
     button.textContent=  tt.title;
@@ -187,9 +187,11 @@ function createLi(tt, ul, shared){
         if(!shared){
             const delBtn = document.createElement('button');
             delBtn.textContent = 'Delete';
+            delBtn.classList.add("button-81")
             delBtn.addEventListener('click', (event) => deleteOne(tt));
             const ediBtn= document.createElement('button');
             ediBtn.textContent= "Edit";
+            ediBtn.classList.add("button-80")
             const divEdit= document.createElement('div');
             divEdit.classList.add('divEdit');
             divEdit.setAttribute('id', tt._id);

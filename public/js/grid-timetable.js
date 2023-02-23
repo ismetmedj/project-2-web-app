@@ -35,17 +35,25 @@ function createCell(x, y, row) {
 }
 
 function createDays() {
-  const daysList= ['Monday', 'Thuesday', 'Wednasday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-  let index= 0;
-    const copy = [...cells.flat()]    
+    const daysList = [
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+        'Sunday',
+    ]
+    let index = 0
+    const copy = [...cells.flat()]
     for (let i = 1; i < 8; i++) {
-      const days = copy[i];
-      days.classList.add("days");
-      days.textContent= daysList[index];
-      index++;
+        const days = copy[i]
+        days.classList.add('days')
+        days.textContent = daysList[index]
+        index++
     }
-}  
-    /*
+}
+/*
   // for(let i=1; i<82; i+=8){
   //   copy[i].classList.add('d0');
   // }
@@ -104,18 +112,18 @@ function createDays() {
 */
 function createHours() {
     const copy = [...cells.flat()]
-    let index= 8;
-  for (let i = 8; i < 81; i+=8) {
-      const hours = copy[i];
-      hours.classList.add("hours");
-      hours.textContent= index+"o'";
-      index++;
-  }
-  for(let i=8; i< columns* rows ; i+=8){
-    for(let j=i+1; j<i+8; j++){
-      copy[j].classList.add('event')
+    let index = 8
+    for (let i = 8; i < 81; i += 8) {
+        const hours = copy[i]
+        hours.classList.add('hours')
+        hours.textContent = index + 'h'
+        index++
     }
-  }
+    for (let i = 8; i < columns * rows; i += 8) {
+        for (let j = i + 1; j < i + 8; j++) {
+            copy[j].classList.add('event')
+        }
+    }
 }
 /*
   // let index=8;
