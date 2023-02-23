@@ -358,14 +358,6 @@ main {
     border: 0.5px solid white;
 }
 
-/* .days {
-    background-color: red;
-} */
-
-/* .hours {
-    background-color: green;
-} */
-
 #grid {
     display: grid;
     /* margin-top: 4rem; */
@@ -394,8 +386,52 @@ main {
 .event {
     overflow-y: scroll;
     overflow-x: hidden;
-    color: black;
+    color: white;
     /* background-color: E6E4F5; */
+}
+
+#afficheEvent {
+    position: absolute;
+    flex-direction: column;
+    display: flex;
+    border: 2px solid black;
+    max-width: 12.5rem;
+    border-radius: 10%;
+}
+
+#titleclose {
+    display: flex;
+    justify-content: space-between;
+}
+
+#closeedit {
+    height: 50%;
+    margin-top: 0.1rem;
+    margin-right: 0.2rem;
+}
+
+#contentEdit {
+    padding: 0.3rem;
+    text-align: center;
+    margin: 0 0.5rem;
+    border-bottom: 2px solid white;
+}
+
+#editDiv {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 0.2rem;
+}
+
+#editAnEvent {
+    margin: auto;
+}
+
+.days,
+.hours {
+    text-align: center;
+    padding-top: 10.76px;
 }
 
 /*********************** NAV BAR ***************************/
@@ -424,11 +460,6 @@ nav > ul > li > a:hover {
     animation-duration: 2s; /* don't forget to set a duration! */
 }
 
-#afficheEvent {
-    /* display: none; */
-    position: absolute;
-    /* margin: 50vh 50vw; */
-}
 /* #Affichage {
     display: flex;
     justify-content: space-between;
