@@ -33,8 +33,7 @@ a {
 h1 {
     text-align: center;
     font-size: 60px;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
+    margin: 3vh auto;
 }
 
 h2 {
@@ -71,6 +70,7 @@ h2 {
     width: 30rem;
     padding-bottom: 5rem;
 }
+
 .main-title {
     font-size: 100px;
     text-align: center;
@@ -137,6 +137,7 @@ h2 {
 
 .login-title {
     width: 100wh;
+    text-align: center;
 }
 
 .form input::placeholder {
@@ -471,7 +472,7 @@ main {
 #list ul {
   display: flex;
   align-items: flex-start;
-  justify-content: space-between;
+  justify-content: center;
   gap: 3vw;
 
 }
@@ -525,7 +526,7 @@ main {
 }
 
 .cell {
-    /* background-color: #263793; */
+    background-color: rgba(15, 12, 209, 0.185);
     border: 0.5px solid white;
     border-radius: 10px;
 }
@@ -534,7 +535,7 @@ main {
     display: grid;
     /* margin-top: 4rem; */
     padding: 1rem;
-    margin-left: 3.5rem;
+    /* margin-left: 3.5rem; */
     grid-template-columns: repeat(8, 11vw);
     grid-template-rows: repeat(11, 7vh);
 }
@@ -571,6 +572,7 @@ main {
     overflow-y: scroll;
     overflow-x: hidden;
     color: white;
+    text-align: center;
     /* background-color: E6E4F5; */
 }
 
@@ -579,8 +581,9 @@ main {
     flex-direction: column;
     display: flex;
     border: 2px solid black;
-    max-width: 12.5rem;
+    /* max-width: 12.5rem; */
     border-radius: 10%;
+    opacity: 80%;
 }
 
 #titleclose {
@@ -612,11 +615,11 @@ main {
 
 #editDiv {
     display: flex;
-    flex-direction: column;
-    /* justify-content: space-evenly; */
-    margin-bottom: 0.2rem;
-    overflow-y: scroll;
-    height: 20vh;
+    /* flex-direction: column; */
+    justify-content: space-evenly;
+    margin-bottom: 0.2rem;  
+    /* overflow-y: scroll; */
+    /* height: 20vh; */
 }
 
 #editAnEvent {
@@ -642,7 +645,14 @@ main {
     padding-top: 10.76px;
 }
 
+#h2edit {
+  padding-left: 1.5rem;
+}
 /*********************** NAV BAR ***************************/
+nav {
+    padding-top: 2rem;
+}
+
 nav > a {
     color: white;
 }
@@ -657,7 +667,7 @@ nav > ul {
 }
 
 nav > ul > li > a {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 900;
 }
 
@@ -672,3 +682,19 @@ nav > ul > li > a:hover {
     display: flex;
     justify-content: space-between;
 } */
+
+/********************/ 
+fieldset {
+    border-radius: 7px;
+    background-color: rgba(0, 4, 63, 0.479);
+}
+
+/****************/
+.timetable-title-create {
+    width: 70vw;
+    height: 20vh;
+}
+
+#h1-profile, #h1-signup {
+    padding: 5rem;
+}
