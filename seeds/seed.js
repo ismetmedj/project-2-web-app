@@ -3,7 +3,8 @@ const bcrypt = require('bcrypt')
 
 const MONGO_URI =
     process.env.MONGODB_URI ||
-    'mongodb+srv://lekix:H8232tRAA4L6fNj@timetables.n1szt8g.mongodb.net/?retryWrites=true&w=majority'
+    //'mongodb+srv://lekix:H8232tRAA4L6fNj@timetables.n1szt8g.mongodb.net/?retryWrites=true&w=majority'
+    "mongodb://localhost:27017"
 
 const users = require('../seeds/user.json')
 const events = require('../seeds/event.json')
